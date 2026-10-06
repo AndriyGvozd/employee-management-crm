@@ -5,9 +5,9 @@
     "passes": 101,
     "pending": 0,
     "failures": 0,
-    "start": "2026-10-06T10:54:06.140Z",
-    "end": "2026-10-06T10:54:10.159Z",
-    "duration": 4019,
+    "start": "2026-10-06T11:13:19.528Z",
+    "end": "2026-10-06T11:13:23.605Z",
+    "duration": 4077,
     "testsRegistered": 101,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "0be1e4c4-0aeb-4083-987d-9da9005ca040",
+      "uuid": "f2f6850d-bbcf-4b25-82be-98a045226ed5",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "b35c8d8d-1636-455b-a195-ba8507fe83af",
+          "uuid": "8aace8bc-8cb0-42e1-83d6-022d3e1852af",
           "title": "Auth API",
           "fullFile": "/app/tests/auth.test.js",
           "file": "/tests/auth.test.js",
@@ -36,7 +36,7 @@
               "title": "\"before all\" hook in \"Auth API\"",
               "fullTitle": "Auth API \"before all\" hook in \"Auth API\"",
               "timedOut": false,
-              "duration": 91,
+              "duration": 97,
               "state": null,
               "speed": null,
               "pass": false,
@@ -45,8 +45,8 @@
               "context": null,
               "code": "// Drop and recreate schema to ensure clean state\nawait db.sequelize.query('DROP SCHEMA IF EXISTS public CASCADE;');\nawait db.sequelize.query('CREATE SCHEMA public;');\nawait db.sequelize.sync({ force: true });",
               "err": {},
-              "uuid": "8a75f826-ca63-460d-9861-3aa16d94267e",
-              "parentUUID": "b35c8d8d-1636-455b-a195-ba8507fe83af",
+              "uuid": "0fdf1362-bf0d-4c5d-90c0-1242807becd6",
+              "parentUUID": "8aace8bc-8cb0-42e1-83d6-022d3e1852af",
               "isHook": true,
               "skipped": false
             }
@@ -55,7 +55,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "9c89b98d-6bb8-4263-8faf-00cdde01e0db",
+              "uuid": "27457774-f724-4c29-9671-46215da0927f",
               "title": "POST /register",
               "fullFile": "/app/tests/auth.test.js",
               "file": "/tests/auth.test.js",
@@ -66,7 +66,7 @@
                   "title": "should register a new employee",
                   "fullTitle": "Auth API POST /register should register a new employee",
                   "timedOut": false,
-                  "duration": 140,
+                  "duration": 136,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -75,8 +75,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/register')\n  .send({\n    email: 'employee@example.com',\n    password: 'password123',\n    firstName: 'John',\n    lastName: 'Doe',\n    middleName: 'Middle',\n    birthDate: '1990-01-01',\n    phone: '+123456789',\n    programmingLanguage: 'JavaScript',\n    secretWord: process.env.SECRET_WORD\n  });\nexpect(res.status).to.equal(201);\nexpect(res.body).to.have.property('userId');",
                   "err": {},
-                  "uuid": "a57fe194-b9e3-4baa-bbbb-33f92884c06f",
-                  "parentUUID": "9c89b98d-6bb8-4263-8faf-00cdde01e0db",
+                  "uuid": "d30b7533-1732-4a11-8a85-e5b41bb30f33",
+                  "parentUUID": "27457774-f724-4c29-9671-46215da0927f",
                   "isHook": false,
                   "skipped": false
                 },
@@ -84,7 +84,7 @@
                   "title": "should not register an admin without secret word",
                   "fullTitle": "Auth API POST /register should not register an admin without secret word",
                   "timedOut": false,
-                  "duration": 5,
+                  "duration": 6,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -93,27 +93,27 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/register')\n  .send({\n    email: 'admin@example.com',\n    password: 'adminpassword',\n    firstName: 'Admin',\n    lastName: 'User',\n    middleName: 'Middle',\n    birthDate: '1980-01-01',\n    phone: '+987654321',\n    programmingLanguage: 'N/A',\n    role: 'admin'\n  });\nexpect(res.status).to.equal(403);\nexpect(res.body).to.have.property('error');",
                   "err": {},
-                  "uuid": "1653ac20-8ad9-4df7-965d-30a8c7e0bd72",
-                  "parentUUID": "9c89b98d-6bb8-4263-8faf-00cdde01e0db",
+                  "uuid": "a959da01-6c48-4ff9-bab7-98bc489a4643",
+                  "parentUUID": "27457774-f724-4c29-9671-46215da0927f",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "a57fe194-b9e3-4baa-bbbb-33f92884c06f",
-                "1653ac20-8ad9-4df7-965d-30a8c7e0bd72"
+                "d30b7533-1732-4a11-8a85-e5b41bb30f33",
+                "a959da01-6c48-4ff9-bab7-98bc489a4643"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 145,
+              "duration": 142,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "6f4dacdf-0959-45f4-8e84-efac24b502ec",
+              "uuid": "10a47ca0-54f3-4a91-a247-424891a89bb7",
               "title": "POST /login",
               "fullFile": "/app/tests/auth.test.js",
               "file": "/tests/auth.test.js",
@@ -124,7 +124,7 @@
                   "title": "should login with valid credentials",
                   "fullTitle": "Auth API POST /login should login with valid credentials",
                   "timedOut": false,
-                  "duration": 93,
+                  "duration": 94,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -133,8 +133,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/login')\n  .send({\n    email: 'employee@example.com',\n    password: 'password123',\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('token');",
                   "err": {},
-                  "uuid": "e0f5f88f-726e-4a57-985a-24e63e90146f",
-                  "parentUUID": "6f4dacdf-0959-45f4-8e84-efac24b502ec",
+                  "uuid": "f5fce47e-947a-4585-8030-351e92283505",
+                  "parentUUID": "10a47ca0-54f3-4a91-a247-424891a89bb7",
                   "isHook": false,
                   "skipped": false
                 },
@@ -142,7 +142,7 @@
                   "title": "should not login with invalid credentials",
                   "fullTitle": "Auth API POST /login should not login with invalid credentials",
                   "timedOut": false,
-                  "duration": 87,
+                  "duration": 88,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -151,21 +151,21 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/login')\n  .send({\n    email: 'employee@example.com',\n    password: 'wrongpassword'\n  });\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('error');",
                   "err": {},
-                  "uuid": "f769eb3b-9fea-48ce-9d7b-af1a0089681e",
-                  "parentUUID": "6f4dacdf-0959-45f4-8e84-efac24b502ec",
+                  "uuid": "6d27befd-1cdb-4882-8ec9-39d63e28508a",
+                  "parentUUID": "10a47ca0-54f3-4a91-a247-424891a89bb7",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "e0f5f88f-726e-4a57-985a-24e63e90146f",
-                "f769eb3b-9fea-48ce-9d7b-af1a0089681e"
+                "f5fce47e-947a-4585-8030-351e92283505",
+                "6d27befd-1cdb-4882-8ec9-39d63e28508a"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 180,
+              "duration": 182,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
@@ -181,7 +181,7 @@
           "_timeout": 2000
         },
         {
-          "uuid": "f198916f-a311-44c8-a1c5-84dc5542a23e",
+          "uuid": "2ddfd9d6-ee60-48fa-880f-3bc5ccd0cdfa",
           "title": "Bug Fixes Tests",
           "fullFile": "/app/tests/bugfixes.test.js",
           "file": "/tests/bugfixes.test.js",
@@ -190,7 +190,7 @@
               "title": "\"before all\" hook in \"Bug Fixes Tests\"",
               "fullTitle": "Bug Fixes Tests \"before all\" hook in \"Bug Fixes Tests\"",
               "timedOut": false,
-              "duration": 489,
+              "duration": 495,
               "state": null,
               "speed": null,
               "pass": false,
@@ -199,8 +199,8 @@
               "context": null,
               "code": "// Recreate database to ensure clean state\nawait db.sequelize.sync({ force: true });\n// Create admin\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'admin@test.com',\n    password: 'adminpass123',\n    firstName: 'Admin',\n    lastName: 'User',\n    middleName: 'Test',\n    birthDate: '1980-01-01',\n    phone: '+1234567890',\n    programmingLanguage: 'JavaScript',\n    role: 'admin',\n    secretWord: process.env.SECRET_WORD\n  });\nconst adminLogin = await request(app)\n  .post('/login')\n  .send({\n    email: 'admin@test.com',\n    password: 'adminpass123'\n  });\nadminToken = adminLogin.body.token;\n\n// Get admin ID\nconst adminUser = await db.User.findOne({ where: { email: 'admin@test.com' } });\nadminId = adminUser.id;\n// Create employee\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'employee@test.com',\n    password: 'emppass123',\n    firstName: 'John',\n    lastName: 'Doe',\n    middleName: 'Test',\n    birthDate: '1990-01-01',\n    phone: '+1234567891',\n    programmingLanguage: 'Python'\n  });\nconst empLogin = await request(app)\n  .post('/login')\n  .send({\n    email: 'employee@test.com',\n    password: 'emppass123'\n  });\nemployeeToken = empLogin.body.token;\n\n// Get employee ID\nconst empUser = await db.User.findOne({ where: { email: 'employee@test.com' } });\nemployeeId = empUser.id;\n// Create second employee for deletion test\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'employee2@test.com',\n    password: 'emppass123',\n    firstName: 'Jane',\n    lastName: 'Smith',\n    middleName: 'Test',\n    birthDate: '1991-01-01',\n    phone: '+1234567892',\n    programmingLanguage: 'Java'\n  });\n\nconst emp2User = await db.User.findOne({ where: { email: 'employee2@test.com' } });\nemployee2Id = emp2User.id;",
               "err": {},
-              "uuid": "2d5f4cf1-c8ce-4d0b-a371-189bd7e97185",
-              "parentUUID": "f198916f-a311-44c8-a1c5-84dc5542a23e",
+              "uuid": "a8e9f989-46f2-4365-a2e0-85b88ab0cd15",
+              "parentUUID": "2ddfd9d6-ee60-48fa-880f-3bc5ccd0cdfa",
               "isHook": true,
               "skipped": false
             }
@@ -209,7 +209,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "b13cdc5a-0c9b-4dea-b29a-51ed6ee48bb2",
+              "uuid": "1bc7fc3f-129e-41e4-8e2d-bec675213e06",
               "title": "Bug Fix 1: Field Permission Logic in updateProfile",
               "fullFile": "/app/tests/bugfixes.test.js",
               "file": "/tests/bugfixes.test.js",
@@ -229,8 +229,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/users/${employeeId}`)\n  .set('Authorization', `Bearer ${employeeToken}`)\n  .send({\n    firstName: 'UpdatedJohn',\n    phone: '+9999999999',\n    linkedinLink: 'https://linkedin.com/in/johndoe',\n    githubLink: 'https://github.com/johndoe'\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body.user.firstName).to.equal('UpdatedJohn');\nexpect(res.body.user.phone).to.equal('+9999999999');\nexpect(res.body.user.linkedinLink).to.equal('https://linkedin.com/in/johndoe');\nexpect(res.body.user.githubLink).to.equal('https://github.com/johndoe');",
                   "err": {},
-                  "uuid": "5833f56a-730a-43ea-8fcb-bb6ffde4afc1",
-                  "parentUUID": "b13cdc5a-0c9b-4dea-b29a-51ed6ee48bb2",
+                  "uuid": "d1cb934a-2707-45da-b6bd-45ef182195ca",
+                  "parentUUID": "1bc7fc3f-129e-41e4-8e2d-bec675213e06",
                   "isHook": false,
                   "skipped": false
                 },
@@ -238,7 +238,7 @@
                   "title": "should reject employee trying to update admin-only fields",
                   "fullTitle": "Bug Fixes Tests Bug Fix 1: Field Permission Logic in updateProfile should reject employee trying to update admin-only fields",
                   "timedOut": false,
-                  "duration": 6,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -247,8 +247,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/users/${employeeId}`)\n  .set('Authorization', `Bearer ${employeeToken}`)\n  .send({\n    salary: 50000,\n    role: 'admin'\n  });\nexpect(res.status).to.equal(403);\nexpect(res.body).to.have.property('error');",
                   "err": {},
-                  "uuid": "0b6f9f02-d68f-4f51-abe4-50454b86d22f",
-                  "parentUUID": "b13cdc5a-0c9b-4dea-b29a-51ed6ee48bb2",
+                  "uuid": "44a50ed8-649e-4084-83c7-9445cdae6a86",
+                  "parentUUID": "1bc7fc3f-129e-41e4-8e2d-bec675213e06",
                   "isHook": false,
                   "skipped": false
                 },
@@ -265,28 +265,28 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/users/${employeeId}`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    salary: 60000,\n    position: 'Senior Developer',\n    workingHoursPerWeek: 40\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body.user.salary).to.equal(60000);\nexpect(res.body.user.position).to.equal('Senior Developer');\nexpect(res.body.user.workingHoursPerWeek).to.equal(40);",
                   "err": {},
-                  "uuid": "2ab3c2b4-2981-4300-ad7e-31cfa8345093",
-                  "parentUUID": "b13cdc5a-0c9b-4dea-b29a-51ed6ee48bb2",
+                  "uuid": "0850ecfa-3557-428a-ade9-ce519a355f54",
+                  "parentUUID": "1bc7fc3f-129e-41e4-8e2d-bec675213e06",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "5833f56a-730a-43ea-8fcb-bb6ffde4afc1",
-                "0b6f9f02-d68f-4f51-abe4-50454b86d22f",
-                "2ab3c2b4-2981-4300-ad7e-31cfa8345093"
+                "d1cb934a-2707-45da-b6bd-45ef182195ca",
+                "44a50ed8-649e-4084-83c7-9445cdae6a86",
+                "0850ecfa-3557-428a-ade9-ce519a355f54"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 36,
+              "duration": 35,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "337238a7-587b-4586-b3a6-2c98ad17d997",
+              "uuid": "a648ef64-fd26-4f51-a52f-222dcd3a7b02",
               "title": "Bug Fix 3: Register Field Injection Prevention",
               "fullFile": "/app/tests/bugfixes.test.js",
               "file": "/tests/bugfixes.test.js",
@@ -297,7 +297,7 @@
                   "title": "should not allow salary injection during registration",
                   "fullTitle": "Bug Fixes Tests Bug Fix 3: Register Field Injection Prevention should not allow salary injection during registration",
                   "timedOut": false,
-                  "duration": 89,
+                  "duration": 93,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -306,26 +306,26 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/register')\n  .send({\n    email: 'hacker@test.com',\n    password: 'hackerpass',\n    firstName: 'Hacker',\n    lastName: 'User',\n    middleName: 'Test',\n    birthDate: '1995-01-01',\n    phone: '+1234567893',\n    programmingLanguage: 'Ruby',\n    salary: 999999, // Attempting to inject salary\n    role: 'employee'\n  });\nexpect(res.status).to.equal(201);\n\n// Verify the user was created without the injected salary\nconst user = await db.User.findOne({ where: { email: 'hacker@test.com' } });\nexpect(user.salary).to.not.equal(999999);\nexpect(user.salary).to.equal(400); // Default value from model",
                   "err": {},
-                  "uuid": "e7a772ac-0d78-4705-a21b-e915e271002a",
-                  "parentUUID": "337238a7-587b-4586-b3a6-2c98ad17d997",
+                  "uuid": "ec8f4860-2861-4764-b55c-5ad805453c11",
+                  "parentUUID": "a648ef64-fd26-4f51-a52f-222dcd3a7b02",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "e7a772ac-0d78-4705-a21b-e915e271002a"
+                "ec8f4860-2861-4764-b55c-5ad805453c11"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 89,
+              "duration": 93,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "64246942-47a5-4b70-8292-ff85b8c7f9b6",
+              "uuid": "e848563d-0cba-4dcb-b676-02dd286078a1",
               "title": "Bug Fix 5: sortBy validation with position",
               "fullFile": "/app/tests/bugfixes.test.js",
               "file": "/tests/bugfixes.test.js",
@@ -336,7 +336,7 @@
                   "title": "should allow sorting by position",
                   "fullTitle": "Bug Fixes Tests Bug Fix 5: sortBy validation with position should allow sorting by position",
                   "timedOut": false,
-                  "duration": 11,
+                  "duration": 12,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -345,8 +345,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?sortBy=position&order=ASC')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('users');",
                   "err": {},
-                  "uuid": "1a9e024d-892b-4b2d-a564-a5e206b1b55b",
-                  "parentUUID": "64246942-47a5-4b70-8292-ff85b8c7f9b6",
+                  "uuid": "c9104a59-add1-4fb4-858f-9fb40ff28f39",
+                  "parentUUID": "e848563d-0cba-4dcb-b676-02dd286078a1",
                   "isHook": false,
                   "skipped": false
                 },
@@ -354,7 +354,7 @@
                   "title": "should reject invalid sortBy parameter",
                   "fullTitle": "Bug Fixes Tests Bug Fix 5: sortBy validation with position should reject invalid sortBy parameter",
                   "timedOut": false,
-                  "duration": 4,
+                  "duration": 6,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -363,27 +363,27 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?sortBy=invalidField')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "fa0d5b30-dd69-47ae-bce7-aafd693c79fc",
-                  "parentUUID": "64246942-47a5-4b70-8292-ff85b8c7f9b6",
+                  "uuid": "d998a2ab-36ca-4ff2-ab80-10d9384feb05",
+                  "parentUUID": "e848563d-0cba-4dcb-b676-02dd286078a1",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "1a9e024d-892b-4b2d-a564-a5e206b1b55b",
-                "fa0d5b30-dd69-47ae-bce7-aafd693c79fc"
+                "c9104a59-add1-4fb4-858f-9fb40ff28f39",
+                "d998a2ab-36ca-4ff2-ab80-10d9384feb05"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 15,
+              "duration": 18,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "3a751016-2a25-4596-9ee1-01593e7c8056",
+              "uuid": "426e2a93-ecbe-4379-9cb7-ecc13ab103c9",
               "title": "Bug Fix 6: User existence check in updateProfile",
               "fullFile": "/app/tests/bugfixes.test.js",
               "file": "/tests/bugfixes.test.js",
@@ -403,15 +403,15 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put('/users/999999')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    firstName: 'Updated'\n  });\nexpect(res.status).to.equal(404);\nexpect(res.body).to.have.property('error');",
                   "err": {},
-                  "uuid": "dc12f173-7fa5-46b3-9103-7f0bbf7e534c",
-                  "parentUUID": "3a751016-2a25-4596-9ee1-01593e7c8056",
+                  "uuid": "0b3a9bb1-f073-4190-842d-a4482b64609c",
+                  "parentUUID": "426e2a93-ecbe-4379-9cb7-ecc13ab103c9",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "dc12f173-7fa5-46b3-9103-7f0bbf7e534c"
+                "0b3a9bb1-f073-4190-842d-a4482b64609c"
               ],
               "failures": [],
               "pending": [],
@@ -422,7 +422,7 @@
               "_timeout": 2000
             },
             {
-              "uuid": "329cedae-0de4-49b1-a79a-00c9c6965b05",
+              "uuid": "30dace72-b097-4e64-8c87-aa399d0c67c1",
               "title": "Bug Fix 7: Self-deletion prevention",
               "fullFile": "/app/tests/bugfixes.test.js",
               "file": "/tests/bugfixes.test.js",
@@ -442,8 +442,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .delete(`/users/${adminId}`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('error');",
                   "err": {},
-                  "uuid": "44501847-d1cb-4164-9b64-155eca2994ad",
-                  "parentUUID": "329cedae-0de4-49b1-a79a-00c9c6965b05",
+                  "uuid": "0877c507-a1bb-4dff-8a84-e7cbe86c18e7",
+                  "parentUUID": "30dace72-b097-4e64-8c87-aa399d0c67c1",
                   "isHook": false,
                   "skipped": false
                 },
@@ -451,7 +451,7 @@
                   "title": "should allow admin to delete other employees",
                   "fullTitle": "Bug Fixes Tests Bug Fix 7: Self-deletion prevention should allow admin to delete other employees",
                   "timedOut": false,
-                  "duration": 7,
+                  "duration": 13,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -460,27 +460,27 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .delete(`/users/${employee2Id}`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('message');",
                   "err": {},
-                  "uuid": "6f49f6e1-bbef-43ac-9144-820f27061847",
-                  "parentUUID": "329cedae-0de4-49b1-a79a-00c9c6965b05",
+                  "uuid": "320ab9a1-820e-45d8-a496-ec3d9787d8c2",
+                  "parentUUID": "30dace72-b097-4e64-8c87-aa399d0c67c1",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "44501847-d1cb-4164-9b64-155eca2994ad",
-                "6f49f6e1-bbef-43ac-9144-820f27061847"
+                "0877c507-a1bb-4dff-8a84-e7cbe86c18e7",
+                "320ab9a1-820e-45d8-a496-ec3d9787d8c2"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 11,
+              "duration": 17,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "bba6b53f-4c19-44f7-b534-c2a57fafa6bc",
+              "uuid": "93cddb83-804d-46b5-a0e9-1d95194c729a",
               "title": "Bug Fix 8: Role handling in createEmployee",
               "fullFile": "/app/tests/bugfixes.test.js",
               "file": "/tests/bugfixes.test.js",
@@ -500,15 +500,15 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/users')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    email: 'newemployee@test.com',\n    password: 'newpass123',\n    firstName: 'New',\n    lastName: 'Employee',\n    middleName: 'Test',\n    birthDate: '1992-01-01',\n    phone: '+1234567894',\n    programmingLanguage: 'Go'\n  });\nexpect(res.status).to.equal(201);\n\nconst user = await db.User.findOne({ where: { email: 'newemployee@test.com' } });\nexpect(user.role).to.equal('employee');",
                   "err": {},
-                  "uuid": "ed8d558f-284a-4514-9259-1db50fbb9a8f",
-                  "parentUUID": "bba6b53f-4c19-44f7-b534-c2a57fafa6bc",
+                  "uuid": "5c788d6a-f457-4a08-a34e-e8ffae4f9886",
+                  "parentUUID": "93cddb83-804d-46b5-a0e9-1d95194c729a",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "ed8d558f-284a-4514-9259-1db50fbb9a8f"
+                "5c788d6a-f457-4a08-a34e-e8ffae4f9886"
               ],
               "failures": [],
               "pending": [],
@@ -519,7 +519,7 @@
               "_timeout": 2000
             },
             {
-              "uuid": "cc9dab05-caeb-4635-bea6-0e1ad6ecaee4",
+              "uuid": "a65f74e1-7033-4095-bca0-08e2a5eab524",
               "title": "Bug Fix 9: Password hashing in updateProfile",
               "fullFile": "/app/tests/bugfixes.test.js",
               "file": "/tests/bugfixes.test.js",
@@ -539,15 +539,15 @@
                   "context": null,
                   "code": "const newPassword = 'newSecurePassword123';\n\nconst updateRes = await request(app)\n  .put(`/users/${employeeId}`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    password: newPassword\n  });\nexpect(updateRes.status).to.equal(200);\n// Verify password is hashed, not stored in plain text\nconst user = await db.User.scope('withPassword').findByPk(employeeId);\nexpect(user.password).to.not.equal(newPassword);\n\n// Verify the hashed password works for login\nconst isValid = await bcrypt.compare(newPassword, user.password);\nexpect(isValid).to.be.true;\n// Verify user can login with new password\nconst loginRes = await request(app)\n  .post('/login')\n  .send({\n    email: 'employee@test.com',\n    password: newPassword\n  });\nexpect(loginRes.status).to.equal(200);\nexpect(loginRes.body).to.have.property('token');",
                   "err": {},
-                  "uuid": "ff2684a7-51c9-44a0-9ec0-963114f37aae",
-                  "parentUUID": "cc9dab05-caeb-4635-bea6-0e1ad6ecaee4",
+                  "uuid": "6c9be44b-c6d7-43ad-9d6a-ea5d4ed85548",
+                  "parentUUID": "a65f74e1-7033-4095-bca0-08e2a5eab524",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "ff2684a7-51c9-44a0-9ec0-963114f37aae"
+                "6c9be44b-c6d7-43ad-9d6a-ea5d4ed85548"
               ],
               "failures": [],
               "pending": [],
@@ -568,7 +568,7 @@
           "_timeout": 2000
         },
         {
-          "uuid": "62bffda7-4002-458c-8356-16e4be753e12",
+          "uuid": "7a89b406-ced1-4d08-b3af-b3b93dfc5f81",
           "title": "Edge Cases Tests",
           "fullFile": "/app/tests/edge-cases.test.js",
           "file": "/tests/edge-cases.test.js",
@@ -577,7 +577,7 @@
               "title": "\"before all\" hook in \"Edge Cases Tests\"",
               "fullTitle": "Edge Cases Tests \"before all\" hook in \"Edge Cases Tests\"",
               "timedOut": false,
-              "duration": 398,
+              "duration": 399,
               "state": null,
               "speed": null,
               "pass": false,
@@ -586,8 +586,8 @@
               "context": null,
               "code": "// Recreate database to ensure clean state\nawait db.sequelize.sync({ force: true });\n// Create admin\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'admin@test.com',\n    password: 'adminpass123',\n    firstName: 'Admin',\n    lastName: 'User',\n    middleName: 'Test',\n    birthDate: '1980-01-01',\n    phone: '+1234567890',\n    programmingLanguage: 'JavaScript',\n    role: 'admin',\n    secretWord: process.env.SECRET_WORD\n  });\nconst adminLogin = await request(app)\n  .post('/login')\n  .send({\n    email: 'admin@test.com',\n    password: 'adminpass123'\n  });\nadminToken = adminLogin.body.token;\n\n// Get admin ID\nconst adminUser = await db.User.findOne({ where: { email: 'admin@test.com' } });\nadminId = adminUser.id;\n// Create employee\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'employee@test.com',\n    password: 'emppass123',\n    firstName: 'John',\n    lastName: 'Doe',\n    middleName: 'Test',\n    birthDate: '1990-01-01',\n    phone: '+1234567891',\n    programmingLanguage: 'Python'\n  });\nconst empLogin = await request(app)\n  .post('/login')\n  .send({\n    email: 'employee@test.com',\n    password: 'emppass123'\n  });\nemployeeToken = empLogin.body.token;\n\n// Get employee ID\nconst empUser = await db.User.findOne({ where: { email: 'employee@test.com' } });\nemployeeId = empUser.id;\n// Create a project\nconst projectRes = await request(app)\n  .post('/projects')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    name: 'Test Project',\n    description: 'Test project description for edge cases',\n    wage: 5000,\n    active: true\n  });\nprojectId = projectRes.body.project.id;",
               "err": {},
-              "uuid": "9f75db4a-6b6f-4df7-9df6-01bc35731f75",
-              "parentUUID": "62bffda7-4002-458c-8356-16e4be753e12",
+              "uuid": "c85862a7-827b-4829-a49a-57fca6cefd99",
+              "parentUUID": "7a89b406-ced1-4d08-b3af-b3b93dfc5f81",
               "isHook": true,
               "skipped": false
             }
@@ -596,7 +596,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "0e2fba21-f26b-4ce5-9023-c6291ff9119d",
+              "uuid": "9a848f12-c396-487e-be27-8a504bdf9575",
               "title": "Edge Case 1: Email Case Insensitivity",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -607,7 +607,7 @@
                   "title": "should login with email in different case",
                   "fullTitle": "Edge Cases Tests Edge Case 1: Email Case Insensitivity should login with email in different case",
                   "timedOut": false,
-                  "duration": 87,
+                  "duration": 88,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -616,8 +616,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/login')\n  .send({\n    email: 'ADMIN@TEST.COM',\n    password: 'adminpass123'\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('token');",
                   "err": {},
-                  "uuid": "e9b19c17-020b-4db1-bc07-c773264810b4",
-                  "parentUUID": "0e2fba21-f26b-4ce5-9023-c6291ff9119d",
+                  "uuid": "ff6528ea-5529-44b1-b696-970889381461",
+                  "parentUUID": "9a848f12-c396-487e-be27-8a504bdf9575",
                   "isHook": false,
                   "skipped": false
                 },
@@ -625,7 +625,7 @@
                   "title": "should reject duplicate email with different case during registration",
                   "fullTitle": "Edge Cases Tests Edge Case 1: Email Case Insensitivity should reject duplicate email with different case during registration",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 4,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -634,8 +634,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/register')\n  .send({\n    email: 'EMPLOYEE@TEST.COM',\n    password: 'newpass123',\n    firstName: 'Jane',\n    lastName: 'Doe',\n    middleName: 'Test',\n    birthDate: '1992-01-01',\n    phone: '+1234567892',\n    programmingLanguage: 'Ruby'\n  });\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('error');",
                   "err": {},
-                  "uuid": "0ed2994a-4c86-4058-821b-e111c7c5ef92",
-                  "parentUUID": "0e2fba21-f26b-4ce5-9023-c6291ff9119d",
+                  "uuid": "0dc7f2b6-7d01-42fc-90a5-c05e114a93af",
+                  "parentUUID": "9a848f12-c396-487e-be27-8a504bdf9575",
                   "isHook": false,
                   "skipped": false
                 },
@@ -652,28 +652,28 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/users')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    email: 'ADMIN@TEST.COM',\n    password: 'newpass123',\n    firstName: 'Another',\n    lastName: 'Admin',\n    middleName: 'Test',\n    birthDate: '1985-01-01',\n    phone: '+1234567893',\n    programmingLanguage: 'Go'\n  });\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('error');",
                   "err": {},
-                  "uuid": "846620a8-86fd-4a77-80ed-bf23366a3db8",
-                  "parentUUID": "0e2fba21-f26b-4ce5-9023-c6291ff9119d",
+                  "uuid": "98182afe-33a5-4abb-aa73-a9529b5e9ddd",
+                  "parentUUID": "9a848f12-c396-487e-be27-8a504bdf9575",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "e9b19c17-020b-4db1-bc07-c773264810b4",
-                "0ed2994a-4c86-4058-821b-e111c7c5ef92",
-                "846620a8-86fd-4a77-80ed-bf23366a3db8"
+                "ff6528ea-5529-44b1-b696-970889381461",
+                "0dc7f2b6-7d01-42fc-90a5-c05e114a93af",
+                "98182afe-33a5-4abb-aa73-a9529b5e9ddd"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 95,
+              "duration": 97,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "1c64f5e3-a850-4b1c-b132-242ac8fa3006",
+              "uuid": "622a78b8-af56-4f92-b876-efc384aeae61",
               "title": "Edge Case 2: JWT Token Expiration Handling",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -684,7 +684,7 @@
                   "title": "should return specific error for expired token",
                   "fullTitle": "Edge Cases Tests Edge Case 2: JWT Token Expiration Handling should return specific error for expired token",
                   "timedOut": false,
-                  "duration": 5,
+                  "duration": 7,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -693,8 +693,8 @@
                   "context": null,
                   "code": "// Create an expired token\nconst expiredToken = jwt.sign(\n  { userId: adminId, role: 'admin' },\n  config.jwtSecret,\n  { expiresIn: '-1h' } // Already expired\n);\nconst res = await request(app)\n  .get('/users')\n  .set('Authorization', `Bearer ${expiredToken}`);\nexpect(res.status).to.equal(401);\nexpect(res.body.error).to.include('истек');",
                   "err": {},
-                  "uuid": "1bb765d4-c9da-4e87-94b8-021de2e05221",
-                  "parentUUID": "1c64f5e3-a850-4b1c-b132-242ac8fa3006",
+                  "uuid": "75887074-0bf6-4181-8a3d-161381594b34",
+                  "parentUUID": "622a78b8-af56-4f92-b876-efc384aeae61",
                   "isHook": false,
                   "skipped": false
                 },
@@ -702,7 +702,7 @@
                   "title": "should return error for malformed token",
                   "fullTitle": "Edge Cases Tests Edge Case 2: JWT Token Expiration Handling should return error for malformed token",
                   "timedOut": false,
-                  "duration": 2,
+                  "duration": 3,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -711,27 +711,27 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users')\n  .set('Authorization', `Bearer invalid.token.here`);\nexpect(res.status).to.equal(403);\nexpect(res.body).to.have.property('error');",
                   "err": {},
-                  "uuid": "9dd5d441-252e-4268-9d43-c1804a3189ba",
-                  "parentUUID": "1c64f5e3-a850-4b1c-b132-242ac8fa3006",
+                  "uuid": "f4b6063b-b731-45dc-9f86-15bf5bc1815b",
+                  "parentUUID": "622a78b8-af56-4f92-b876-efc384aeae61",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "1bb765d4-c9da-4e87-94b8-021de2e05221",
-                "9dd5d441-252e-4268-9d43-c1804a3189ba"
+                "75887074-0bf6-4181-8a3d-161381594b34",
+                "f4b6063b-b731-45dc-9f86-15bf5bc1815b"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 7,
+              "duration": 10,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "d696f09d-6b70-4873-a73a-f6eeeec8ea29",
+              "uuid": "143ab839-a9d9-416a-b689-c69c8e609d6c",
               "title": "Edge Case 3: Pagination Edge Cases",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -742,7 +742,7 @@
                   "title": "should reject negative page number with validation error",
                   "fullTitle": "Edge Cases Tests Edge Case 3: Pagination Edge Cases should reject negative page number with validation error",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -751,8 +751,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?page=-5')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "13418ac0-6735-43bb-95ae-bbc27fcc7f20",
-                  "parentUUID": "d696f09d-6b70-4873-a73a-f6eeeec8ea29",
+                  "uuid": "0d2c0d03-96b4-4028-97d3-7d5c51f2887a",
+                  "parentUUID": "143ab839-a9d9-416a-b689-c69c8e609d6c",
                   "isHook": false,
                   "skipped": false
                 },
@@ -769,8 +769,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?page=0')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "c96274b4-af50-465a-839e-1e58ee344e75",
-                  "parentUUID": "d696f09d-6b70-4873-a73a-f6eeeec8ea29",
+                  "uuid": "462d0b1f-16d0-4f6a-9536-ccb1c5e7d891",
+                  "parentUUID": "143ab839-a9d9-416a-b689-c69c8e609d6c",
                   "isHook": false,
                   "skipped": false
                 },
@@ -787,8 +787,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?limit=-10')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "5d17cdac-c9d5-44bf-99f1-6033939ad6ab",
-                  "parentUUID": "d696f09d-6b70-4873-a73a-f6eeeec8ea29",
+                  "uuid": "011ce833-5a95-4912-ac77-18160dcc554a",
+                  "parentUUID": "143ab839-a9d9-416a-b689-c69c8e609d6c",
                   "isHook": false,
                   "skipped": false
                 },
@@ -796,7 +796,7 @@
                   "title": "should cap limit at maximum value (100)",
                   "fullTitle": "Edge Cases Tests Edge Case 3: Pagination Edge Cases should cap limit at maximum value (100)",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 4,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -805,8 +805,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects?limit=1000')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "bff416bc-45af-4979-b8e6-c7249a833036",
-                  "parentUUID": "d696f09d-6b70-4873-a73a-f6eeeec8ea29",
+                  "uuid": "c0df893b-49cf-4186-9537-cb8d3298604c",
+                  "parentUUID": "143ab839-a9d9-416a-b689-c69c8e609d6c",
                   "isHook": false,
                   "skipped": false
                 },
@@ -823,30 +823,30 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?page=abc')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "da94b827-2fdd-450c-8ad3-23c57c39d8ec",
-                  "parentUUID": "d696f09d-6b70-4873-a73a-f6eeeec8ea29",
+                  "uuid": "6f301acb-5c49-49db-9472-6eb4e3d0f6be",
+                  "parentUUID": "143ab839-a9d9-416a-b689-c69c8e609d6c",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "13418ac0-6735-43bb-95ae-bbc27fcc7f20",
-                "c96274b4-af50-465a-839e-1e58ee344e75",
-                "5d17cdac-c9d5-44bf-99f1-6033939ad6ab",
-                "bff416bc-45af-4979-b8e6-c7249a833036",
-                "da94b827-2fdd-450c-8ad3-23c57c39d8ec"
+                "0d2c0d03-96b4-4028-97d3-7d5c51f2887a",
+                "462d0b1f-16d0-4f6a-9536-ccb1c5e7d891",
+                "011ce833-5a95-4912-ac77-18160dcc554a",
+                "c0df893b-49cf-4186-9537-cb8d3298604c",
+                "6f301acb-5c49-49db-9472-6eb4e3d0f6be"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 18,
+              "duration": 21,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "a6ded043-c676-4d44-8a1b-025f972bed41",
+              "uuid": "d20229aa-db0c-4618-9530-63295177ab5a",
               "title": "Edge Case 4: VacationDates Array Handling",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -866,8 +866,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/users/${employeeId}`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    vacationDates: '2024-12-25'\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body.user.vacationDates).to.be.an('array');\nexpect(res.body.user.vacationDates).to.have.lengthOf(1);",
                   "err": {},
-                  "uuid": "53b4a7e8-1467-4fc9-83a2-f115904de63f",
-                  "parentUUID": "a6ded043-c676-4d44-8a1b-025f972bed41",
+                  "uuid": "e5d0e3b0-a2b5-4b2c-813c-51b5e3e49714",
+                  "parentUUID": "d20229aa-db0c-4618-9530-63295177ab5a",
                   "isHook": false,
                   "skipped": false
                 },
@@ -884,16 +884,16 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/users/${employeeId}`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    vacationDates: ['2024-12-25', '2024-12-26']\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body.user.vacationDates).to.be.an('array');\nexpect(res.body.user.vacationDates).to.have.lengthOf(2);",
                   "err": {},
-                  "uuid": "2894de51-dbf3-44a0-8923-6288ec98f858",
-                  "parentUUID": "a6ded043-c676-4d44-8a1b-025f972bed41",
+                  "uuid": "9df41d00-c192-4432-b544-e331883e10b5",
+                  "parentUUID": "d20229aa-db0c-4618-9530-63295177ab5a",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "53b4a7e8-1467-4fc9-83a2-f115904de63f",
-                "2894de51-dbf3-44a0-8923-6288ec98f858"
+                "e5d0e3b0-a2b5-4b2c-813c-51b5e3e49714",
+                "9df41d00-c192-4432-b544-e331883e10b5"
               ],
               "failures": [],
               "pending": [],
@@ -904,7 +904,7 @@
               "_timeout": 2000
             },
             {
-              "uuid": "ff6e7df0-4c16-487c-90bf-c2b3239eb379",
+              "uuid": "9a4646f6-68a9-4d92-a228-a451b251986a",
               "title": "Edge Case 5: Project Employee Management Validation",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -924,8 +924,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post(`/projects/${projectId}/employee`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    employeeId: 'invalid'\n  });\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "7202a23c-e30f-4dd9-8f3b-4f021c6a35ce",
-                  "parentUUID": "ff6e7df0-4c16-487c-90bf-c2b3239eb379",
+                  "uuid": "18a33ba9-f5e3-4a8f-8640-79c531a748f9",
+                  "parentUUID": "9a4646f6-68a9-4d92-a228-a451b251986a",
                   "isHook": false,
                   "skipped": false
                 },
@@ -942,8 +942,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post(`/projects/${projectId}/employee`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    employeeId: -5\n  });\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "6b88d6ae-2dd1-4f74-b57e-59ef23471a7b",
-                  "parentUUID": "ff6e7df0-4c16-487c-90bf-c2b3239eb379",
+                  "uuid": "4a4816bc-8507-406a-a786-f49626ed46de",
+                  "parentUUID": "9a4646f6-68a9-4d92-a228-a451b251986a",
                   "isHook": false,
                   "skipped": false
                 },
@@ -951,7 +951,7 @@
                   "title": "should reject zero employeeId",
                   "fullTitle": "Edge Cases Tests Edge Case 5: Project Employee Management Validation should reject zero employeeId",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 4,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -960,8 +960,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post(`/projects/${projectId}/employee`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    employeeId: 0\n  });\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "0eadffbb-62f2-4834-8054-211e4d2b55f7",
-                  "parentUUID": "ff6e7df0-4c16-487c-90bf-c2b3239eb379",
+                  "uuid": "552ff5b4-6f1d-479a-bcc3-f89170bf768d",
+                  "parentUUID": "9a4646f6-68a9-4d92-a228-a451b251986a",
                   "isHook": false,
                   "skipped": false
                 },
@@ -969,7 +969,7 @@
                   "title": "should successfully add valid employee to project",
                   "fullTitle": "Edge Cases Tests Edge Case 5: Project Employee Management Validation should successfully add valid employee to project",
                   "timedOut": false,
-                  "duration": 9,
+                  "duration": 10,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -978,29 +978,29 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post(`/projects/${projectId}/employee`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    employeeId: employeeId\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('message');",
                   "err": {},
-                  "uuid": "ec998fe5-9018-46ca-843a-301f552cb261",
-                  "parentUUID": "ff6e7df0-4c16-487c-90bf-c2b3239eb379",
+                  "uuid": "01b304fe-7e0d-4c19-939a-2d398cfa3ab7",
+                  "parentUUID": "9a4646f6-68a9-4d92-a228-a451b251986a",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "7202a23c-e30f-4dd9-8f3b-4f021c6a35ce",
-                "6b88d6ae-2dd1-4f74-b57e-59ef23471a7b",
-                "0eadffbb-62f2-4834-8054-211e4d2b55f7",
-                "ec998fe5-9018-46ca-843a-301f552cb261"
+                "18a33ba9-f5e3-4a8f-8640-79c531a748f9",
+                "4a4816bc-8507-406a-a786-f49626ed46de",
+                "552ff5b4-6f1d-479a-bcc3-f89170bf768d",
+                "01b304fe-7e0d-4c19-939a-2d398cfa3ab7"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 19,
+              "duration": 21,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "67d896de-f0dd-4d70-8b57-d9c46f91d12e",
+              "uuid": "340b9d8f-f74b-429e-ad0e-12a4111c2fc7",
               "title": "Edge Case 6: Notification Pagination Validation",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -1011,7 +1011,7 @@
                   "title": "should validate page parameter for notifications",
                   "fullTitle": "Edge Cases Tests Edge Case 6: Notification Pagination Validation should validate page parameter for notifications",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -1020,8 +1020,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/notifications?page=invalid')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "7de47642-9626-4c52-bcfd-363644fe7c05",
-                  "parentUUID": "67d896de-f0dd-4d70-8b57-d9c46f91d12e",
+                  "uuid": "eaf214c9-35b3-4125-b218-dab91c35fdc7",
+                  "parentUUID": "340b9d8f-f74b-429e-ad0e-12a4111c2fc7",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1029,7 +1029,7 @@
                   "title": "should validate limit parameter for notifications",
                   "fullTitle": "Edge Cases Tests Edge Case 6: Notification Pagination Validation should validate limit parameter for notifications",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 8,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -1038,8 +1038,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/notifications?limit=999')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "1f69ad67-7dd9-4836-8160-710700895864",
-                  "parentUUID": "67d896de-f0dd-4d70-8b57-d9c46f91d12e",
+                  "uuid": "6a0adb00-76a2-4dde-b36b-1d329947b55e",
+                  "parentUUID": "340b9d8f-f74b-429e-ad0e-12a4111c2fc7",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1047,7 +1047,7 @@
                   "title": "should validate sortBy parameter for notifications",
                   "fullTitle": "Edge Cases Tests Edge Case 6: Notification Pagination Validation should validate sortBy parameter for notifications",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 4,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -1056,28 +1056,28 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/notifications?sortBy=invalidField')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "8acf231c-aac6-47b3-bbb9-f38e753d38f4",
-                  "parentUUID": "67d896de-f0dd-4d70-8b57-d9c46f91d12e",
+                  "uuid": "e3655f46-28ad-4cb5-bfee-e38b59708b29",
+                  "parentUUID": "340b9d8f-f74b-429e-ad0e-12a4111c2fc7",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "7de47642-9626-4c52-bcfd-363644fe7c05",
-                "1f69ad67-7dd9-4836-8160-710700895864",
-                "8acf231c-aac6-47b3-bbb9-f38e753d38f4"
+                "eaf214c9-35b3-4125-b218-dab91c35fdc7",
+                "6a0adb00-76a2-4dde-b36b-1d329947b55e",
+                "e3655f46-28ad-4cb5-bfee-e38b59708b29"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 9,
+              "duration": 17,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "037295c9-c6c3-4908-b90f-35634ccb78c9",
+              "uuid": "141cada5-72ff-484f-8c83-4696e9d0de26",
               "title": "Edge Case 7: Project Employees Endpoint",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -1088,7 +1088,7 @@
                   "title": "should get employees assigned to a project",
                   "fullTitle": "Edge Cases Tests Edge Case 7: Project Employees Endpoint should get employees assigned to a project",
                   "timedOut": false,
-                  "duration": 4,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -1097,8 +1097,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get(`/projects/${projectId}/employees`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('employees');\nexpect(res.body.employees).to.be.an('array');",
                   "err": {},
-                  "uuid": "2e0213b4-7301-41ab-8d94-85b588cd4282",
-                  "parentUUID": "037295c9-c6c3-4908-b90f-35634ccb78c9",
+                  "uuid": "e7e8bdb6-d51f-47c9-9d62-81c5cf68df30",
+                  "parentUUID": "141cada5-72ff-484f-8c83-4696e9d0de26",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1106,7 +1106,7 @@
                   "title": "should return 404 for non-existent project",
                   "fullTitle": "Edge Cases Tests Edge Case 7: Project Employees Endpoint should return 404 for non-existent project",
                   "timedOut": false,
-                  "duration": 4,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -1115,8 +1115,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects/99999/employees')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(404);",
                   "err": {},
-                  "uuid": "120ac91a-bd86-4f55-9aa2-76d53eec82b3",
-                  "parentUUID": "037295c9-c6c3-4908-b90f-35634ccb78c9",
+                  "uuid": "d80ef18d-f6fa-4576-9e66-9412bffcdce6",
+                  "parentUUID": "141cada5-72ff-484f-8c83-4696e9d0de26",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1133,28 +1133,28 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get(`/projects/${projectId}/employees`)\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nif (res.body.employees.length > 0) {\n  expect(res.body.employees[0]).to.not.have.property('salary');\n}",
                   "err": {},
-                  "uuid": "3f70c060-5c4b-460b-81b7-5131a25fd34c",
-                  "parentUUID": "037295c9-c6c3-4908-b90f-35634ccb78c9",
+                  "uuid": "76c8f923-48d1-43b7-a3ed-75d8d6cd3c02",
+                  "parentUUID": "141cada5-72ff-484f-8c83-4696e9d0de26",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "2e0213b4-7301-41ab-8d94-85b588cd4282",
-                "120ac91a-bd86-4f55-9aa2-76d53eec82b3",
-                "3f70c060-5c4b-460b-81b7-5131a25fd34c"
+                "e7e8bdb6-d51f-47c9-9d62-81c5cf68df30",
+                "d80ef18d-f6fa-4576-9e66-9412bffcdce6",
+                "76c8f923-48d1-43b7-a3ed-75d8d6cd3c02"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 12,
+              "duration": 14,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "f988ae0b-268e-4c8e-a305-3e529921cf28",
+              "uuid": "38d6ef9f-35e7-4c85-9c91-daaa125cafb4",
               "title": "Edge Case 8: Invalid Project/Employee IDs",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -1174,8 +1174,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects/invalid/employees')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "fa28ae3b-aa6d-42f8-be96-3f831b2e0f51",
-                  "parentUUID": "f988ae0b-268e-4c8e-a305-3e529921cf28",
+                  "uuid": "de17f3db-c12e-4519-ab06-883d46acd498",
+                  "parentUUID": "38d6ef9f-35e7-4c85-9c91-daaa125cafb4",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1192,16 +1192,16 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .delete(`/projects/${projectId}/employees/invalid`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "986f7829-2f8b-4b8f-8e5d-8041c3658da1",
-                  "parentUUID": "f988ae0b-268e-4c8e-a305-3e529921cf28",
+                  "uuid": "e5f6209f-43a5-40f1-9a75-cbfa6390374b",
+                  "parentUUID": "38d6ef9f-35e7-4c85-9c91-daaa125cafb4",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "fa28ae3b-aa6d-42f8-be96-3f831b2e0f51",
-                "986f7829-2f8b-4b8f-8e5d-8041c3658da1"
+                "de17f3db-c12e-4519-ab06-883d46acd498",
+                "e5f6209f-43a5-40f1-9a75-cbfa6390374b"
               ],
               "failures": [],
               "pending": [],
@@ -1212,7 +1212,7 @@
               "_timeout": 2000
             },
             {
-              "uuid": "75415dc5-781d-44dc-bf10-62e5bd58cc36",
+              "uuid": "29e50f7c-48f6-45c9-a74e-0ad71a35ccee",
               "title": "Edge Case 9: Email Update Edge Cases",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -1232,15 +1232,15 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/users/${employeeId}`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    email: 'NEWEMAIL@TEST.COM'\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body.user.email).to.equal('newemail@test.com');",
                   "err": {},
-                  "uuid": "04a18d7b-7283-4aef-b34e-15646e65ccc4",
-                  "parentUUID": "75415dc5-781d-44dc-bf10-62e5bd58cc36",
+                  "uuid": "0c41f4d6-6728-4fab-a1ee-8c2f85efad4e",
+                  "parentUUID": "29e50f7c-48f6-45c9-a74e-0ad71a35ccee",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "04a18d7b-7283-4aef-b34e-15646e65ccc4"
+                "0c41f4d6-6728-4fab-a1ee-8c2f85efad4e"
               ],
               "failures": [],
               "pending": [],
@@ -1251,7 +1251,7 @@
               "_timeout": 2000
             },
             {
-              "uuid": "d62d4882-123e-45b3-92c5-8ae8d40973bd",
+              "uuid": "6a48a9cd-5809-4ee9-9dd6-122102c8d803",
               "title": "Edge Case 10: Empty String Validation",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -1271,8 +1271,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/users/${employeeId}`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    firstName: ''\n  });\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "ef23a4ad-5c5a-41b5-b372-a30304c3ebf7",
-                  "parentUUID": "d62d4882-123e-45b3-92c5-8ae8d40973bd",
+                  "uuid": "236cf647-bd75-4770-af14-0b483b05c5db",
+                  "parentUUID": "6a48a9cd-5809-4ee9-9dd6-122102c8d803",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1289,16 +1289,16 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects?search=   ')\n  .set('Authorization', `Bearer ${adminToken}`);\n// Should not crash and return valid response\nexpect(res.status).to.equal(200);\nexpect(res.body.projects).to.be.an('array');",
                   "err": {},
-                  "uuid": "00d0a95b-ccfb-4873-8de0-ca7cbd7aefdb",
-                  "parentUUID": "d62d4882-123e-45b3-92c5-8ae8d40973bd",
+                  "uuid": "cee4ab03-d636-459c-a1e1-4e650f44d051",
+                  "parentUUID": "6a48a9cd-5809-4ee9-9dd6-122102c8d803",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "ef23a4ad-5c5a-41b5-b372-a30304c3ebf7",
-                "00d0a95b-ccfb-4873-8de0-ca7cbd7aefdb"
+                "236cf647-bd75-4770-af14-0b483b05c5db",
+                "cee4ab03-d636-459c-a1e1-4e650f44d051"
               ],
               "failures": [],
               "pending": [],
@@ -1309,7 +1309,7 @@
               "_timeout": 2000
             },
             {
-              "uuid": "a9fafc93-33e4-4f38-94f7-5147185fa123",
+              "uuid": "1873aea5-cf95-47bf-8559-776db6caa04b",
               "title": "Edge Case 11: User ID Validation",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -1320,7 +1320,7 @@
                   "title": "should validate user ID in delete endpoint",
                   "fullTitle": "Edge Cases Tests Edge Case 11: User ID Validation should validate user ID in delete endpoint",
                   "timedOut": false,
-                  "duration": 4,
+                  "duration": 3,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -1329,32 +1329,14 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .delete('/users/invalid')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "09ec21b7-ec7e-45ef-ad6f-4dff4183b5ce",
-                  "parentUUID": "a9fafc93-33e4-4f38-94f7-5147185fa123",
+                  "uuid": "b8191035-a246-4687-901d-1609fbe3e714",
+                  "parentUUID": "1873aea5-cf95-47bf-8559-776db6caa04b",
                   "isHook": false,
                   "skipped": false
                 },
                 {
                   "title": "should validate user ID in update endpoint",
                   "fullTitle": "Edge Cases Tests Edge Case 11: User ID Validation should validate user ID in update endpoint",
-                  "timedOut": false,
-                  "duration": 5,
-                  "state": "passed",
-                  "speed": "fast",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "context": null,
-                  "code": "const res = await request(app)\n  .put('/users/abc')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    firstName: 'Updated'\n  });\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
-                  "err": {},
-                  "uuid": "8073d0cf-17a0-417f-9870-b18d48c4804d",
-                  "parentUUID": "a9fafc93-33e4-4f38-94f7-5147185fa123",
-                  "isHook": false,
-                  "skipped": false
-                },
-                {
-                  "title": "should validate user ID in get endpoint",
-                  "fullTitle": "Edge Cases Tests Edge Case 11: User ID Validation should validate user ID in get endpoint",
                   "timedOut": false,
                   "duration": 4,
                   "state": "passed",
@@ -1363,10 +1345,28 @@
                   "fail": false,
                   "pending": false,
                   "context": null,
+                  "code": "const res = await request(app)\n  .put('/users/abc')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    firstName: 'Updated'\n  });\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
+                  "err": {},
+                  "uuid": "c00e1ecd-3ff2-4be1-9fd5-b4ab6a7eb8f1",
+                  "parentUUID": "1873aea5-cf95-47bf-8559-776db6caa04b",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should validate user ID in get endpoint",
+                  "fullTitle": "Edge Cases Tests Edge Case 11: User ID Validation should validate user ID in get endpoint",
+                  "timedOut": false,
+                  "duration": 3,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
                   "code": "const res = await request(app)\n  .get('/users/xyz')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "4fe2bfdc-2344-4fb4-b263-c26093c8306a",
-                  "parentUUID": "a9fafc93-33e4-4f38-94f7-5147185fa123",
+                  "uuid": "9b9aed67-e7e2-40a2-b1a5-93c7a289c483",
+                  "parentUUID": "1873aea5-cf95-47bf-8559-776db6caa04b",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1383,8 +1383,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users/-1')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "252a5012-9d6f-4d46-9bcc-e4697008f71b",
-                  "parentUUID": "a9fafc93-33e4-4f38-94f7-5147185fa123",
+                  "uuid": "4342a772-11fc-4e4e-b55b-9c046dec9439",
+                  "parentUUID": "1873aea5-cf95-47bf-8559-776db6caa04b",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1401,30 +1401,30 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .delete('/users/0')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');",
                   "err": {},
-                  "uuid": "1d0eeda3-48ed-41aa-8e97-18fadd531187",
-                  "parentUUID": "a9fafc93-33e4-4f38-94f7-5147185fa123",
+                  "uuid": "d825d6db-7fb6-4547-880b-83ac68d37b2e",
+                  "parentUUID": "1873aea5-cf95-47bf-8559-776db6caa04b",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "09ec21b7-ec7e-45ef-ad6f-4dff4183b5ce",
-                "8073d0cf-17a0-417f-9870-b18d48c4804d",
-                "4fe2bfdc-2344-4fb4-b263-c26093c8306a",
-                "252a5012-9d6f-4d46-9bcc-e4697008f71b",
-                "1d0eeda3-48ed-41aa-8e97-18fadd531187"
+                "b8191035-a246-4687-901d-1609fbe3e714",
+                "c00e1ecd-3ff2-4be1-9fd5-b4ab6a7eb8f1",
+                "9b9aed67-e7e2-40a2-b1a5-93c7a289c483",
+                "4342a772-11fc-4e4e-b55b-9c046dec9439",
+                "d825d6db-7fb6-4547-880b-83ac68d37b2e"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 19,
+              "duration": 16,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "c80a362c-8f2b-49c3-a40e-71fd13bec68a",
+              "uuid": "d6991e99-fbd1-4c33-9a40-116cd94bba6e",
               "title": "Edge Case 12: Configuration Security",
               "fullFile": "/app/tests/edge-cases.test.js",
               "file": "/tests/edge-cases.test.js",
@@ -1444,8 +1444,8 @@
                   "context": null,
                   "code": "expect(config.jwtSecret).to.exist;\nexpect(config.jwtSecret).to.not.equal('');",
                   "err": {},
-                  "uuid": "47a7f602-8ab2-4922-8c67-f6cded3baddd",
-                  "parentUUID": "c80a362c-8f2b-49c3-a40e-71fd13bec68a",
+                  "uuid": "9b015719-a5f9-4f7b-9459-928adf077d25",
+                  "parentUUID": "d6991e99-fbd1-4c33-9a40-116cd94bba6e",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1462,16 +1462,16 @@
                   "context": null,
                   "code": "expect(config.secretWord).to.exist;\nexpect(config.secretWord).to.not.equal('');",
                   "err": {},
-                  "uuid": "1ce3ba1a-5a03-4d3e-a374-6736d36aad08",
-                  "parentUUID": "c80a362c-8f2b-49c3-a40e-71fd13bec68a",
+                  "uuid": "29acc854-2494-4028-9da7-93b7fb45945b",
+                  "parentUUID": "d6991e99-fbd1-4c33-9a40-116cd94bba6e",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "47a7f602-8ab2-4922-8c67-f6cded3baddd",
-                "1ce3ba1a-5a03-4d3e-a374-6736d36aad08"
+                "9b015719-a5f9-4f7b-9459-928adf077d25",
+                "29acc854-2494-4028-9da7-93b7fb45945b"
               ],
               "failures": [],
               "pending": [],
@@ -1492,7 +1492,7 @@
           "_timeout": 2000
         },
         {
-          "uuid": "bd534f69-6426-4943-9756-c102aefddbf4",
+          "uuid": "1c24bfc2-72b1-41cf-b356-ef9f0993869f",
           "title": "Notification API",
           "fullFile": "/app/tests/notification.test.js",
           "file": "/tests/notification.test.js",
@@ -1501,7 +1501,7 @@
               "title": "\"before all\" hook in \"Notification API\"",
               "fullTitle": "Notification API \"before all\" hook in \"Notification API\"",
               "timedOut": false,
-              "duration": 227,
+              "duration": 230,
               "state": null,
               "speed": null,
               "pass": false,
@@ -1510,8 +1510,8 @@
               "context": null,
               "code": "// Drop and recreate schema to ensure clean state\nawait db.sequelize.query('DROP SCHEMA IF EXISTS public CASCADE;');\nawait db.sequelize.query('CREATE SCHEMA public;');\nawait db.sequelize.sync({ force: true });\n// Создаем администратора и получаем токен\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'admin@example.com',\n    password: 'adminpassword',\n    firstName: 'Admin',\n    lastName: 'User',\n    middleName: 'Middle',\n    birthDate: '1980-01-01',\n    phone: '+987654321',\n    programmingLanguage: 'N/A',\n    role: 'admin',\n    secretWord: process.env.SECRET_WORD\n  });\nconst res = await request(app)\n  .post('/login')\n  .send({\n    email: 'admin@example.com',\n    password: 'adminpassword'\n  });\nadminToken = res.body.token;\n// Создаем сотрудника, к которому будет относиться уведомление\nemployee = await db.User.create({\n  firstName: 'John',\n  lastName: 'Doe',\n  middleName: 'Middle',\n  email: 'john.doe@example.com',\n  phone: '+123456789',\n  birthDate: '1990-01-01',\n  programmingLanguage: 'JavaScript',\n  country: 'USA',\n  hireDate: new Date(),\n  salary: 1000,\n  role: 'employee',\n  password: 'employeePassword'\n});\n// Создаем уведомление с relatedUserId\nawait db.Notification.create({\n  message: 'Test notification',\n  userId: 1, // Администратор\n  relatedUserId: employee.id, // Сотрудник, к которому относится уведомление\n  type: 'general',\n  eventDate: new Date(),\n  isRead: false\n});",
               "err": {},
-              "uuid": "beeaa224-dfc0-4e56-86c9-b1184cc497c1",
-              "parentUUID": "bd534f69-6426-4943-9756-c102aefddbf4",
+              "uuid": "3cd59d9d-b245-470f-9ef8-7b70cb1612cc",
+              "parentUUID": "1c24bfc2-72b1-41cf-b356-ef9f0993869f",
               "isHook": true,
               "skipped": false
             }
@@ -1520,7 +1520,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "13ddb3cc-bab0-411f-8573-2b09dcec40c8",
+              "uuid": "428b7f53-66c3-4674-a704-6731970870e8",
               "title": "GET /notifications",
               "fullFile": "/app/tests/notification.test.js",
               "file": "/tests/notification.test.js",
@@ -1531,7 +1531,7 @@
                   "title": "should get list of notifications for admin",
                   "fullTitle": "Notification API GET /notifications should get list of notifications for admin",
                   "timedOut": false,
-                  "duration": 6,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -1540,26 +1540,26 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/notifications')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.be.an('object');\nexpect(res.body.notifications[0]).to.have.property('message');\nexpect(res.body.notifications[0]).to.have.property('relatedUserId', employee.id);",
                   "err": {},
-                  "uuid": "0963c7f8-a04c-4601-94f1-41e960b4440b",
-                  "parentUUID": "13ddb3cc-bab0-411f-8573-2b09dcec40c8",
+                  "uuid": "537146f4-73f6-4203-8190-377a04d83d55",
+                  "parentUUID": "428b7f53-66c3-4674-a704-6731970870e8",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "0963c7f8-a04c-4601-94f1-41e960b4440b"
+                "537146f4-73f6-4203-8190-377a04d83d55"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 6,
+              "duration": 5,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "826c266a-53cb-48d8-9bd9-249f42b85589",
+              "uuid": "d38c57f9-73ba-4523-9670-07f32735c577",
               "title": "PATCH /notifications/:id/mark-as-read",
               "fullFile": "/app/tests/notification.test.js",
               "file": "/tests/notification.test.js",
@@ -1579,15 +1579,15 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .patch('/notifications/1/mark-as-read')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('message', 'Уведомление отмечено как прочитанное');\n// Проверяем, что уведомление действительно отмечено как прочитанное\nconst notification = await db.Notification.findByPk(1);\nexpect(notification.isRead).to.be.true;",
                   "err": {},
-                  "uuid": "085fc5e4-63df-4fe4-93e9-a797ad48674a",
-                  "parentUUID": "826c266a-53cb-48d8-9bd9-249f42b85589",
+                  "uuid": "34f893fb-2430-4ac2-93f4-633d32d71c75",
+                  "parentUUID": "d38c57f9-73ba-4523-9670-07f32735c577",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "085fc5e4-63df-4fe4-93e9-a797ad48674a"
+                "34f893fb-2430-4ac2-93f4-633d32d71c75"
               ],
               "failures": [],
               "pending": [],
@@ -1608,7 +1608,7 @@
           "_timeout": 2000
         },
         {
-          "uuid": "0be20f30-a4e4-4171-82cb-5810723a2087",
+          "uuid": "9540dd98-1c09-49aa-b6aa-c2b7267da0c2",
           "title": "Notification Service",
           "fullFile": "/app/tests/notificationService.test.js",
           "file": "/tests/notificationService.test.js",
@@ -1617,7 +1617,7 @@
               "title": "\"before each\" hook in \"Notification Service\"",
               "fullTitle": "Notification Service \"before each\" hook in \"Notification Service\"",
               "timedOut": false,
-              "duration": 15,
+              "duration": 16,
               "state": null,
               "speed": null,
               "pass": false,
@@ -1626,8 +1626,8 @@
               "context": null,
               "code": "sandbox = sinon.createSandbox();\n// Drop and recreate schema to ensure clean state\nawait db.sequelize.query('DROP SCHEMA IF EXISTS public CASCADE;');\nawait db.sequelize.query('CREATE SCHEMA public;');\n// Синхронизация таблицы Users\nawait db.User.sync({ force: true }); // Создаем или обновляем таблицу Users\nawait db.Notification.sync({ force: true }); // Создаем или обновляем таблицу Notifications\n// Мокаем методы создания уведомлений\nsandbox.stub(db.Notification, 'findOne').resolves(null);\nsandbox.stub(db.Notification, 'create').resolves();",
               "err": {},
-              "uuid": "0ee83157-4ed6-41f2-ae41-65822fc260e4",
-              "parentUUID": "0be20f30-a4e4-4171-82cb-5810723a2087",
+              "uuid": "b5b70813-bf2c-463a-b9c7-f7f7d5e70c21",
+              "parentUUID": "9540dd98-1c09-49aa-b6aa-c2b7267da0c2",
               "isHook": true,
               "skipped": false
             }
@@ -1646,8 +1646,8 @@
               "context": null,
               "code": "sandbox.restore();",
               "err": {},
-              "uuid": "ac19ec20-59b5-4dfe-aeb9-ef524db868e1",
-              "parentUUID": "0be20f30-a4e4-4171-82cb-5810723a2087",
+              "uuid": "93784fd0-e84c-4ea8-8021-b5b5a2925669",
+              "parentUUID": "9540dd98-1c09-49aa-b6aa-c2b7267da0c2",
               "isHook": true,
               "skipped": false
             }
@@ -1666,50 +1666,14 @@
               "context": null,
               "code": "const scheduleJobStub = sandbox.stub(schedule, 'scheduleJob');\nscheduleNotifications();\nexpect(scheduleJobStub.calledOnce).to.be.true;\nexpect(scheduleJobStub.firstCall.args[0]).to.equal('0 0 * * *');",
               "err": {},
-              "uuid": "23374b49-f409-47f4-9146-a92773054933",
-              "parentUUID": "0be20f30-a4e4-4171-82cb-5810723a2087",
+              "uuid": "97297ea9-0e94-44e3-9fb5-dcd16b3b8efa",
+              "parentUUID": "9540dd98-1c09-49aa-b6aa-c2b7267da0c2",
               "isHook": false,
               "skipped": false
             },
             {
               "title": "should send birthday reminder notifications for users with birthdays in 30 days",
               "fullTitle": "Notification Service should send birthday reminder notifications for users with birthdays in 30 days",
-              "timedOut": false,
-              "duration": 2,
-              "state": "passed",
-              "speed": "fast",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "context": null,
-              "code": "// Дата \"сегодня\"\nconst today = new Date();\n\n// Получаем всех пользователей из базы\nconst users = await db.User.findAll({ where: { role: 'employee' } });\nconst admins = await db.User.findAll({ where: { role: 'admin' } });\nconst userWithUpcomingBirthday = users.find(user => {\n  const birthDate = new Date(user.birthDate);\n  const currentYear = today.getFullYear();\n  let nextBirthday = new Date(currentYear, birthDate.getMonth(), birthDate.getDate());\n  if (nextBirthday < today) {\n    nextBirthday.setFullYear(currentYear + 1);\n  }\n  const daysUntilBirthday = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));\n  return daysUntilBirthday === 30;\n});\nif (userWithUpcomingBirthday) {\n  await scheduleNotifications();\n  expect(db.Notification.create.called).to.be.true;\n  const notificationArgs = db.Notification.create.firstCall.args[0];\n  expect(notificationArgs.message).to.include(`Через месяц день рождения у ${userWithUpcomingBirthday.firstName} ${userWithUpcomingBirthday.lastName}`);\n  expect(notificationArgs.type).to.equal('birthday_reminder');\n} else {\n  console.log('Нет пользователей с днем рождения через 30 дней.');\n}",
-              "err": {},
-              "uuid": "2e5865e8-f96e-4fe0-aaee-07545ce63e5c",
-              "parentUUID": "0be20f30-a4e4-4171-82cb-5810723a2087",
-              "isHook": false,
-              "skipped": false
-            },
-            {
-              "title": "should send salary increase reminder notifications for users with upcoming raises",
-              "fullTitle": "Notification Service should send salary increase reminder notifications for users with upcoming raises",
-              "timedOut": false,
-              "duration": 2,
-              "state": "passed",
-              "speed": "fast",
-              "pass": true,
-              "fail": false,
-              "pending": false,
-              "context": null,
-              "code": "const today = new Date();\n// Получаем всех пользователей\nconst users = await db.User.findAll({ where: { role: 'employee' } });\nconst admins = await db.User.findAll({ where: { role: 'admin' } });\nconst userWithUpcomingRaise = users.find(user => {\n  const lastIncrease = new Date(user.lastSalaryIncreaseDate || user.hireDate);\n  const nextIncreaseDate = new Date(lastIncrease);\n  nextIncreaseDate.setMonth(nextIncreaseDate.getMonth() + 6);\n  const daysUntilNextIncrease = Math.ceil((nextIncreaseDate - today) / (1000 * 60 * 60 * 24));\n  return daysUntilNextIncrease === 30;\n});\nif (userWithUpcomingRaise) {\n  await scheduleNotifications();\n  expect(db.Notification.create.called).to.be.true;\n  const notificationArgs = db.Notification.create.firstCall.args[0];\n  expect(notificationArgs.message).to.include(`Через месяц запланировано повышение зарплаты для сотрудника ${userWithUpcomingRaise.firstName} ${userWithUpcomingRaise.lastName}`);\n  expect(notificationArgs.type).to.equal('salary_increase_reminder');\n} else {\n  console.log('Нет сотрудников, у которых запланировано повышение зарплаты через 30 дней.');\n}",
-              "err": {},
-              "uuid": "962c8a94-6562-4e64-a913-fb2339447ea1",
-              "parentUUID": "0be20f30-a4e4-4171-82cb-5810723a2087",
-              "isHook": false,
-              "skipped": false
-            },
-            {
-              "title": "should automatically increase salary for eligible users",
-              "fullTitle": "Notification Service should automatically increase salary for eligible users",
               "timedOut": false,
               "duration": 1,
               "state": "passed",
@@ -1718,31 +1682,67 @@
               "fail": false,
               "pending": false,
               "context": null,
+              "code": "// Дата \"сегодня\"\nconst today = new Date();\n\n// Получаем всех пользователей из базы\nconst users = await db.User.findAll({ where: { role: 'employee' } });\nconst admins = await db.User.findAll({ where: { role: 'admin' } });\nconst userWithUpcomingBirthday = users.find(user => {\n  const birthDate = new Date(user.birthDate);\n  const currentYear = today.getFullYear();\n  let nextBirthday = new Date(currentYear, birthDate.getMonth(), birthDate.getDate());\n  if (nextBirthday < today) {\n    nextBirthday.setFullYear(currentYear + 1);\n  }\n  const daysUntilBirthday = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));\n  return daysUntilBirthday === 30;\n});\nif (userWithUpcomingBirthday) {\n  await scheduleNotifications();\n  expect(db.Notification.create.called).to.be.true;\n  const notificationArgs = db.Notification.create.firstCall.args[0];\n  expect(notificationArgs.message).to.include(`Через месяц день рождения у ${userWithUpcomingBirthday.firstName} ${userWithUpcomingBirthday.lastName}`);\n  expect(notificationArgs.type).to.equal('birthday_reminder');\n} else {\n  console.log('Нет пользователей с днем рождения через 30 дней.');\n}",
+              "err": {},
+              "uuid": "bdf02207-5173-4de2-9bb9-a429a373e869",
+              "parentUUID": "9540dd98-1c09-49aa-b6aa-c2b7267da0c2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should send salary increase reminder notifications for users with upcoming raises",
+              "fullTitle": "Notification Service should send salary increase reminder notifications for users with upcoming raises",
+              "timedOut": false,
+              "duration": 1,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const today = new Date();\n// Получаем всех пользователей\nconst users = await db.User.findAll({ where: { role: 'employee' } });\nconst admins = await db.User.findAll({ where: { role: 'admin' } });\nconst userWithUpcomingRaise = users.find(user => {\n  const lastIncrease = new Date(user.lastSalaryIncreaseDate || user.hireDate);\n  const nextIncreaseDate = new Date(lastIncrease);\n  nextIncreaseDate.setMonth(nextIncreaseDate.getMonth() + 6);\n  const daysUntilNextIncrease = Math.ceil((nextIncreaseDate - today) / (1000 * 60 * 60 * 24));\n  return daysUntilNextIncrease === 30;\n});\nif (userWithUpcomingRaise) {\n  await scheduleNotifications();\n  expect(db.Notification.create.called).to.be.true;\n  const notificationArgs = db.Notification.create.firstCall.args[0];\n  expect(notificationArgs.message).to.include(`Через месяц запланировано повышение зарплаты для сотрудника ${userWithUpcomingRaise.firstName} ${userWithUpcomingRaise.lastName}`);\n  expect(notificationArgs.type).to.equal('salary_increase_reminder');\n} else {\n  console.log('Нет сотрудников, у которых запланировано повышение зарплаты через 30 дней.');\n}",
+              "err": {},
+              "uuid": "786b6320-8651-41d4-85c4-ea8188a97cb0",
+              "parentUUID": "9540dd98-1c09-49aa-b6aa-c2b7267da0c2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should automatically increase salary for eligible users",
+              "fullTitle": "Notification Service should automatically increase salary for eligible users",
+              "timedOut": false,
+              "duration": 2,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
               "code": "const today = new Date();\n// Получаем всех пользователей\nconst users = await db.User.findAll({ where: { role: 'employee' } });\nconst admins = await db.User.findAll({ where: { role: 'admin' } });\nconst userEligibleForRaise = users.find(user => {\n  const lastIncrease = new Date(user.lastSalaryIncreaseDate || user.hireDate);\n  const nextIncreaseDate = new Date(lastIncrease);\n  nextIncreaseDate.setMonth(nextIncreaseDate.getMonth() + 6);\n  const daysUntilNextIncrease = Math.ceil((nextIncreaseDate - today) / (1000 * 60 * 60 * 24));\n  return daysUntilNextIncrease <= 0 && user.salary < 1500;\n});\nif (userEligibleForRaise) {\n  sandbox.stub(userEligibleForRaise, 'update').resolves();  // Мокаем метод update\n  await scheduleNotifications();\n  expect(userEligibleForRaise.update.calledOnce).to.be.true;\n  const updateArgs = userEligibleForRaise.update.firstCall.args[0];\n  expect(updateArgs.salary).to.be.at.most(1500);  // Проверяем, что зарплата увеличена корректно\n  // Проверяем, что уведомление о повышении зарплаты было создано\n  expect(db.Notification.create.called).to.be.true;\n  const notificationArgs = db.Notification.create.firstCall.args[0];\n  expect(notificationArgs.message).to.include(`Зарплата сотрудника ${userEligibleForRaise.firstName} ${userEligibleForRaise.lastName} была автоматически увеличена`);\n  expect(notificationArgs.type).to.equal('salary_increased');\n} else {\n  console.log('Нет сотрудников, которым требуется повысить зарплату.');\n}",
               "err": {},
-              "uuid": "bd38fd31-4708-4f79-9493-d39651e24afa",
-              "parentUUID": "0be20f30-a4e4-4171-82cb-5810723a2087",
+              "uuid": "787b9019-9df7-40f6-95c9-b88070aca6ae",
+              "parentUUID": "9540dd98-1c09-49aa-b6aa-c2b7267da0c2",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "23374b49-f409-47f4-9146-a92773054933",
-            "2e5865e8-f96e-4fe0-aaee-07545ce63e5c",
-            "962c8a94-6562-4e64-a913-fb2339447ea1",
-            "bd38fd31-4708-4f79-9493-d39651e24afa"
+            "97297ea9-0e94-44e3-9fb5-dcd16b3b8efa",
+            "bdf02207-5173-4de2-9bb9-a429a373e869",
+            "786b6320-8651-41d4-85c4-ea8188a97cb0",
+            "787b9019-9df7-40f6-95c9-b88070aca6ae"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 6,
+          "duration": 5,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
         },
         {
-          "uuid": "c4baac0d-6eac-44a6-ab0c-327ab095c85d",
+          "uuid": "01350f33-7904-4b7d-83c7-cf11b942af07",
           "title": "Project API",
           "fullFile": "/app/tests/project.test.js",
           "file": "/tests/project.test.js",
@@ -1751,7 +1751,7 @@
               "title": "\"before all\" hook in \"Project API\"",
               "fullTitle": "Project API \"before all\" hook in \"Project API\"",
               "timedOut": false,
-              "duration": 385,
+              "duration": 388,
               "state": null,
               "speed": null,
               "pass": false,
@@ -1760,8 +1760,8 @@
               "context": null,
               "code": "// Drop and recreate schema to ensure clean state\nawait db.sequelize.query('DROP SCHEMA IF EXISTS public CASCADE;');\nawait db.sequelize.query('CREATE SCHEMA public;');\nawait db.sequelize.sync({ force: true });\n// Create admin and get token\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'admin@example.com',\n    password: 'adminpassword',\n    firstName: 'Admin',\n    lastName: 'User',\n    middleName: 'Middle',\n    birthDate: '1980-01-01',\n    phone: '+987654321',\n    programmingLanguage: 'N/A',\n    role: 'admin',\n    secretWord: process.env.SECRET_WORD\n  });\nconst adminRes = await request(app)\n  .post('/login')\n  .send({\n    email: 'admin@example.com',\n    password: 'adminpassword'\n  });\nadminToken = adminRes.body.token;\n// Create employee and get token\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'employee@example.com',\n    password: 'password123',\n    firstName: 'John',\n    lastName: 'Doe',\n    middleName: 'Middle',\n    birthDate: '1990-01-01',\n    phone: '+123456789',\n    programmingLanguage: 'JavaScript',\n    country: 'USA',\n    englishLevel: 'Intermediate',\n    registrationDate: '2021-01-01'\n  });\nconst employeeRes = await request(app)\n  .post('/login')\n  .send({\n    email: 'employee@example.com',\n    password: 'password123'\n  });\nemployeeToken = employeeRes.body.token;",
               "err": {},
-              "uuid": "73e77f54-66e4-48c2-ab20-2e03036358bf",
-              "parentUUID": "c4baac0d-6eac-44a6-ab0c-327ab095c85d",
+              "uuid": "79fd478e-59ec-4f5f-b24a-b6c0189c1cd5",
+              "parentUUID": "01350f33-7904-4b7d-83c7-cf11b942af07",
               "isHook": true,
               "skipped": false
             }
@@ -1770,7 +1770,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "685eb45a-57f7-4bc3-874e-4caadf533c0e",
+              "uuid": "8f497a4d-bdf9-4f0c-80bb-2d0c261c7257",
               "title": "POST /projects",
               "fullFile": "/app/tests/project.test.js",
               "file": "/tests/project.test.js",
@@ -1790,8 +1790,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/projects')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    name: 'Test Project',\n    description: 'This is a test project description',\n    wage: 5000,\n    active: true\n  });\nexpect(res.status).to.equal(201);\nexpect(res.body).to.have.property('project');\nexpect(res.body.project).to.have.property('id');\nexpect(res.body.project.name).to.equal('Test Project');\ntestProjectId = res.body.project.id;",
                   "err": {},
-                  "uuid": "c8a69129-de2f-4c4c-8de2-746f89133c4b",
-                  "parentUUID": "685eb45a-57f7-4bc3-874e-4caadf533c0e",
+                  "uuid": "0ee08cc1-6671-43e0-803b-87f8a3c8d577",
+                  "parentUUID": "8f497a4d-bdf9-4f0c-80bb-2d0c261c7257",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1808,8 +1808,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/projects')\n  .send({\n    name: 'Unauthenticated Project',\n    description: 'This should fail'\n  });\nexpect(res.status).to.equal(401);",
                   "err": {},
-                  "uuid": "95a9b8b9-df88-4f05-a6db-d32ccfa04a75",
-                  "parentUUID": "685eb45a-57f7-4bc3-874e-4caadf533c0e",
+                  "uuid": "7b8d9c09-33ca-4e84-814b-e9948503211c",
+                  "parentUUID": "8f497a4d-bdf9-4f0c-80bb-2d0c261c7257",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1817,7 +1817,7 @@
                   "title": "should fail to create project as employee",
                   "fullTitle": "Project API POST /projects should fail to create project as employee",
                   "timedOut": false,
-                  "duration": 4,
+                  "duration": 3,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -1826,8 +1826,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/projects')\n  .set('Authorization', `Bearer ${employeeToken}`)\n  .send({\n    name: 'Employee Project',\n    description: 'This should fail because employee is not admin'\n  });\nexpect(res.status).to.equal(403);",
                   "err": {},
-                  "uuid": "a1d22555-129d-4136-8bac-14dd6e7f2430",
-                  "parentUUID": "685eb45a-57f7-4bc3-874e-4caadf533c0e",
+                  "uuid": "118a7303-9c8a-4c9f-886b-5d2dfa4b6eef",
+                  "parentUUID": "8f497a4d-bdf9-4f0c-80bb-2d0c261c7257",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1844,8 +1844,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/projects')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    name: 'A', // Too short\n    description: 'Short' // Too short\n  });\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "cb0e91dc-4953-45c2-97f9-43477136e174",
-                  "parentUUID": "685eb45a-57f7-4bc3-874e-4caadf533c0e",
+                  "uuid": "bd342149-35bc-498b-9abd-6eabc96e781e",
+                  "parentUUID": "8f497a4d-bdf9-4f0c-80bb-2d0c261c7257",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1862,30 +1862,30 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/projects')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    name: 'Test Project', // Duplicate\n    description: 'This is a duplicate project name'\n  });\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "eaa71b78-bc85-400b-835d-cdb749ea0131",
-                  "parentUUID": "685eb45a-57f7-4bc3-874e-4caadf533c0e",
+                  "uuid": "8548a9c1-b076-42ba-8b8a-02e3b3f4cad0",
+                  "parentUUID": "8f497a4d-bdf9-4f0c-80bb-2d0c261c7257",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "c8a69129-de2f-4c4c-8de2-746f89133c4b",
-                "95a9b8b9-df88-4f05-a6db-d32ccfa04a75",
-                "a1d22555-129d-4136-8bac-14dd6e7f2430",
-                "cb0e91dc-4953-45c2-97f9-43477136e174",
-                "eaa71b78-bc85-400b-835d-cdb749ea0131"
+                "0ee08cc1-6671-43e0-803b-87f8a3c8d577",
+                "7b8d9c09-33ca-4e84-814b-e9948503211c",
+                "118a7303-9c8a-4c9f-886b-5d2dfa4b6eef",
+                "bd342149-35bc-498b-9abd-6eabc96e781e",
+                "8548a9c1-b076-42ba-8b8a-02e3b3f4cad0"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 19,
+              "duration": 18,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "53bc8acd-2e8a-4a53-8f46-bf9630e7a34c",
+              "uuid": "127b7599-a3b1-4789-a90e-69bb68765e67",
               "title": "GET /projects",
               "fullFile": "/app/tests/project.test.js",
               "file": "/tests/project.test.js",
@@ -1905,8 +1905,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('projects');\nexpect(res.body.projects).to.be.an('array');\nexpect(res.body.projects.length).to.be.greaterThan(0);\nexpect(res.body.projects[0]).to.have.property('wage'); // Admin can see wage",
                   "err": {},
-                  "uuid": "5d51117d-254b-478d-8f6c-31644655b159",
-                  "parentUUID": "53bc8acd-2e8a-4a53-8f46-bf9630e7a34c",
+                  "uuid": "7eef4c6d-ca90-46fa-93bf-c25a3a9ab508",
+                  "parentUUID": "127b7599-a3b1-4789-a90e-69bb68765e67",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1923,8 +1923,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('projects');\nexpect(res.body.projects).to.be.an('array');\nexpect(res.body.projects.length).to.be.greaterThan(0);\nexpect(res.body.projects[0]).to.not.have.property('wage'); // Employee cannot see wage",
                   "err": {},
-                  "uuid": "aa971d58-7b87-4c92-bb69-0c041d6796f7",
-                  "parentUUID": "53bc8acd-2e8a-4a53-8f46-bf9630e7a34c",
+                  "uuid": "7afbeb6a-c8c9-4df3-af2e-9e1e856915d7",
+                  "parentUUID": "127b7599-a3b1-4789-a90e-69bb68765e67",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1941,8 +1941,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects?active=true')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.projects).to.be.an('array');\nif (res.body.projects.length > 0) {\n  expect(res.body.projects.every(p => p.active === true)).to.be.true;\n}",
                   "err": {},
-                  "uuid": "301bc7a3-102e-4642-82cf-9ee43a03c2e8",
-                  "parentUUID": "53bc8acd-2e8a-4a53-8f46-bf9630e7a34c",
+                  "uuid": "8f010073-44ea-41fb-b496-2f38444f0d67",
+                  "parentUUID": "127b7599-a3b1-4789-a90e-69bb68765e67",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1959,8 +1959,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects?search=Test')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.projects.length).to.be.greaterThan(0);",
                   "err": {},
-                  "uuid": "434e8183-704f-4ab0-9fd6-42be511ca3ab",
-                  "parentUUID": "53bc8acd-2e8a-4a53-8f46-bf9630e7a34c",
+                  "uuid": "a8a29686-3bfa-4082-b20c-39b9213a8834",
+                  "parentUUID": "127b7599-a3b1-4789-a90e-69bb68765e67",
                   "isHook": false,
                   "skipped": false
                 },
@@ -1977,19 +1977,19 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects?page=1&limit=1')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.projects.length).to.equal(1);\nexpect(res.body).to.have.property('totalPages');",
                   "err": {},
-                  "uuid": "04374f76-4a88-423a-bdc7-b95ae6f217ae",
-                  "parentUUID": "53bc8acd-2e8a-4a53-8f46-bf9630e7a34c",
+                  "uuid": "731bbd67-98db-45c4-9f09-779c66c988cf",
+                  "parentUUID": "127b7599-a3b1-4789-a90e-69bb68765e67",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "5d51117d-254b-478d-8f6c-31644655b159",
-                "aa971d58-7b87-4c92-bb69-0c041d6796f7",
-                "301bc7a3-102e-4642-82cf-9ee43a03c2e8",
-                "434e8183-704f-4ab0-9fd6-42be511ca3ab",
-                "04374f76-4a88-423a-bdc7-b95ae6f217ae"
+                "7eef4c6d-ca90-46fa-93bf-c25a3a9ab508",
+                "7afbeb6a-c8c9-4df3-af2e-9e1e856915d7",
+                "8f010073-44ea-41fb-b496-2f38444f0d67",
+                "a8a29686-3bfa-4082-b20c-39b9213a8834",
+                "731bbd67-98db-45c4-9f09-779c66c988cf"
               ],
               "failures": [],
               "pending": [],
@@ -2000,7 +2000,7 @@
               "_timeout": 2000
             },
             {
-              "uuid": "19a93988-dfd6-4ec5-b02b-d1dfbdd0827f",
+              "uuid": "7d12b811-e3f4-4439-8cd9-7b900e613b8d",
               "title": "GET /projects/:id",
               "fullFile": "/app/tests/project.test.js",
               "file": "/tests/project.test.js",
@@ -2020,8 +2020,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get(`/projects/${testProjectId}`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('id');\nexpect(res.body.id).to.equal(testProjectId);\nexpect(res.body).to.have.property('wage'); // Admin can see wage",
                   "err": {},
-                  "uuid": "402bf09c-ccaa-432d-937d-921a203b579c",
-                  "parentUUID": "19a93988-dfd6-4ec5-b02b-d1dfbdd0827f",
+                  "uuid": "5079a352-1f7d-46b6-a297-e84687258f71",
+                  "parentUUID": "7d12b811-e3f4-4439-8cd9-7b900e613b8d",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2029,7 +2029,7 @@
                   "title": "should get a single project as employee without wage",
                   "fullTitle": "Project API GET /projects/:id should get a single project as employee without wage",
                   "timedOut": false,
-                  "duration": 5,
+                  "duration": 4,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2038,8 +2038,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get(`/projects/${testProjectId}`)\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('id');\nexpect(res.body).to.not.have.property('wage'); // Employee cannot see wage",
                   "err": {},
-                  "uuid": "fe314829-6dfd-46f1-8b2f-5646f26ceccf",
-                  "parentUUID": "19a93988-dfd6-4ec5-b02b-d1dfbdd0827f",
+                  "uuid": "0bf682b7-fa47-43db-8ce8-fe5ce9a01d47",
+                  "parentUUID": "7d12b811-e3f4-4439-8cd9-7b900e613b8d",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2056,8 +2056,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects/99999')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(404);",
                   "err": {},
-                  "uuid": "c877e896-5bac-4f95-968d-f6accf0b2d37",
-                  "parentUUID": "19a93988-dfd6-4ec5-b02b-d1dfbdd0827f",
+                  "uuid": "1cd6d221-3eb4-4d1b-ad34-7904d8c1ffaf",
+                  "parentUUID": "7d12b811-e3f4-4439-8cd9-7b900e613b8d",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2074,29 +2074,29 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/projects/invalid')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "7dce3a83-f719-4d03-8332-15c24e4b9474",
-                  "parentUUID": "19a93988-dfd6-4ec5-b02b-d1dfbdd0827f",
+                  "uuid": "f3c0fc78-4105-4f7f-a4b6-eb0a76263bd4",
+                  "parentUUID": "7d12b811-e3f4-4439-8cd9-7b900e613b8d",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "402bf09c-ccaa-432d-937d-921a203b579c",
-                "fe314829-6dfd-46f1-8b2f-5646f26ceccf",
-                "c877e896-5bac-4f95-968d-f6accf0b2d37",
-                "7dce3a83-f719-4d03-8332-15c24e4b9474"
+                "5079a352-1f7d-46b6-a297-e84687258f71",
+                "0bf682b7-fa47-43db-8ce8-fe5ce9a01d47",
+                "1cd6d221-3eb4-4d1b-ad34-7904d8c1ffaf",
+                "f3c0fc78-4105-4f7f-a4b6-eb0a76263bd4"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 18,
+              "duration": 17,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "e722f308-b52c-46f5-9571-1bca249a75f4",
+              "uuid": "7d7c67be-faa7-4ed2-a6d6-9f54bc8c277a",
               "title": "PUT /projects/:id",
               "fullFile": "/app/tests/project.test.js",
               "file": "/tests/project.test.js",
@@ -2116,8 +2116,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/projects/${testProjectId}`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    name: 'Updated Test Project',\n    description: 'This is an updated description',\n    wage: 6000\n  });\nexpect(res.status).to.equal(200);\nexpect(res.body.project.name).to.equal('Updated Test Project');\nexpect(res.body.project.wage).to.equal(6000);",
                   "err": {},
-                  "uuid": "2cca946f-2c28-4101-b643-b87ce9cb272d",
-                  "parentUUID": "e722f308-b52c-46f5-9571-1bca249a75f4",
+                  "uuid": "62b6d43f-def5-42e7-97f8-ca1e295e1122",
+                  "parentUUID": "7d7c67be-faa7-4ed2-a6d6-9f54bc8c277a",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2134,8 +2134,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/projects/${testProjectId}`)\n  .set('Authorization', `Bearer ${employeeToken}`)\n  .send({\n    name: 'Should Fail'\n  });\nexpect(res.status).to.equal(403);",
                   "err": {},
-                  "uuid": "f6559699-cd7e-4865-9b3e-07278a0afafe",
-                  "parentUUID": "e722f308-b52c-46f5-9571-1bca249a75f4",
+                  "uuid": "6f7da632-c5d1-408e-af5d-f07d035cc2d0",
+                  "parentUUID": "7d7c67be-faa7-4ed2-a6d6-9f54bc8c277a",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2143,7 +2143,7 @@
                   "title": "should fail to update with invalid data",
                   "fullTitle": "Project API PUT /projects/:id should fail to update with invalid data",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 4,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2152,28 +2152,28 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .put(`/projects/${testProjectId}`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    description: 'Short' // Too short\n  });\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "4c72edfa-dac5-4ce0-875d-1ef0209a35b2",
-                  "parentUUID": "e722f308-b52c-46f5-9571-1bca249a75f4",
+                  "uuid": "3934a746-88cf-4b93-8cf9-adbabfc162e5",
+                  "parentUUID": "7d7c67be-faa7-4ed2-a6d6-9f54bc8c277a",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "2cca946f-2c28-4101-b643-b87ce9cb272d",
-                "f6559699-cd7e-4865-9b3e-07278a0afafe",
-                "4c72edfa-dac5-4ce0-875d-1ef0209a35b2"
+                "62b6d43f-def5-42e7-97f8-ca1e295e1122",
+                "6f7da632-c5d1-408e-af5d-f07d035cc2d0",
+                "3934a746-88cf-4b93-8cf9-adbabfc162e5"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 16,
+              "duration": 17,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "4f5160fb-160a-4ae4-bfdd-e91156051cef",
+              "uuid": "ed7d90ac-23a2-4ae3-aca8-c0340c4a2cae",
               "title": "POST /projects/:id/employees",
               "fullFile": "/app/tests/project.test.js",
               "file": "/tests/project.test.js",
@@ -2182,7 +2182,7 @@
                   "title": "\"before all\" hook in \"POST /projects/:id/employees\"",
                   "fullTitle": "Project API POST /projects/:id/employees \"before all\" hook in \"POST /projects/:id/employees\"",
                   "timedOut": false,
-                  "duration": 6,
+                  "duration": 5,
                   "state": null,
                   "speed": null,
                   "pass": false,
@@ -2191,8 +2191,8 @@
                   "context": null,
                   "code": "const userRes = await request(app)\n  .get('/users')\n  .set('Authorization', `Bearer ${adminToken}`);\n\nconst employee = userRes.body.users.find(u => u.role === 'employee');\nif (!employee) {\n  throw new Error('No employee found for project assignment tests');\n}\nemployeeId = employee.id;",
                   "err": {},
-                  "uuid": "09abd580-4b01-49cf-9ff9-8023a58c70eb",
-                  "parentUUID": "4f5160fb-160a-4ae4-bfdd-e91156051cef",
+                  "uuid": "0c7513ad-67bf-4d65-bb33-fad131e79d53",
+                  "parentUUID": "ed7d90ac-23a2-4ae3-aca8-c0340c4a2cae",
                   "isHook": true,
                   "skipped": false
                 }
@@ -2212,8 +2212,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post(`/projects/${testProjectId}/employees`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    employeeIds: [employeeId]\n  });\nexpect(res.status).to.equal(200);",
                   "err": {},
-                  "uuid": "7338d882-c575-49b8-bc62-bb020a62172f",
-                  "parentUUID": "4f5160fb-160a-4ae4-bfdd-e91156051cef",
+                  "uuid": "6093c6c7-d796-4ccd-8386-3eb5e80b54e1",
+                  "parentUUID": "ed7d90ac-23a2-4ae3-aca8-c0340c4a2cae",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2221,7 +2221,7 @@
                   "title": "should allow empty array to remove all employees",
                   "fullTitle": "Project API POST /projects/:id/employees should allow empty array to remove all employees",
                   "timedOut": false,
-                  "duration": 6,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2230,8 +2230,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post(`/projects/${testProjectId}/employees`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    employeeIds: []\n  });\nexpect(res.status).to.equal(200);",
                   "err": {},
-                  "uuid": "a9c054a8-89d1-489d-a643-d293e8acc40d",
-                  "parentUUID": "4f5160fb-160a-4ae4-bfdd-e91156051cef",
+                  "uuid": "705c6327-cfc7-4b90-9637-5404b570d6c5",
+                  "parentUUID": "ed7d90ac-23a2-4ae3-aca8-c0340c4a2cae",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2248,8 +2248,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post(`/projects/${testProjectId}/employees`)\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    employeeIds: [99999]\n  });\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "0038d335-4a6e-4adb-ac68-c9aa9676cbbc",
-                  "parentUUID": "4f5160fb-160a-4ae4-bfdd-e91156051cef",
+                  "uuid": "8590d064-cbf4-483c-8565-406d5790d605",
+                  "parentUUID": "ed7d90ac-23a2-4ae3-aca8-c0340c4a2cae",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2257,7 +2257,7 @@
                   "title": "should fail as employee",
                   "fullTitle": "Project API POST /projects/:id/employees should fail as employee",
                   "timedOut": false,
-                  "duration": 3,
+                  "duration": 4,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2266,18 +2266,18 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post(`/projects/${testProjectId}/employees`)\n  .set('Authorization', `Bearer ${employeeToken}`)\n  .send({\n    employeeIds: [employeeId]\n  });\nexpect(res.status).to.equal(403);",
                   "err": {},
-                  "uuid": "261ae5db-83ea-440d-b0db-8913a362e4fe",
-                  "parentUUID": "4f5160fb-160a-4ae4-bfdd-e91156051cef",
+                  "uuid": "02ea75fa-6857-4985-ae68-2523f4a6a7fd",
+                  "parentUUID": "ed7d90ac-23a2-4ae3-aca8-c0340c4a2cae",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "7338d882-c575-49b8-bc62-bb020a62172f",
-                "a9c054a8-89d1-489d-a643-d293e8acc40d",
-                "0038d335-4a6e-4adb-ac68-c9aa9676cbbc",
-                "261ae5db-83ea-440d-b0db-8913a362e4fe"
+                "6093c6c7-d796-4ccd-8386-3eb5e80b54e1",
+                "705c6327-cfc7-4b90-9637-5404b570d6c5",
+                "8590d064-cbf4-483c-8565-406d5790d605",
+                "02ea75fa-6857-4985-ae68-2523f4a6a7fd"
               ],
               "failures": [],
               "pending": [],
@@ -2288,7 +2288,7 @@
               "_timeout": 2000
             },
             {
-              "uuid": "17e33fc5-6602-4193-b0bb-7726cef10e6c",
+              "uuid": "64b87952-c6e6-4b3b-acdd-529dc7a8bcfe",
               "title": "DELETE /projects/:id",
               "fullFile": "/app/tests/project.test.js",
               "file": "/tests/project.test.js",
@@ -2308,8 +2308,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .delete(`/projects/${testProjectId}`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);",
                   "err": {},
-                  "uuid": "8b0a363a-91e7-4ade-acc1-6d7211469821",
-                  "parentUUID": "17e33fc5-6602-4193-b0bb-7726cef10e6c",
+                  "uuid": "b0ce636e-a22f-4348-a618-bc38df0d3e19",
+                  "parentUUID": "64b87952-c6e6-4b3b-acdd-529dc7a8bcfe",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2326,8 +2326,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .delete(`/projects/${testProjectId}`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(404);",
                   "err": {},
-                  "uuid": "675de4a2-7ceb-4088-aba7-32c96e924a27",
-                  "parentUUID": "17e33fc5-6602-4193-b0bb-7726cef10e6c",
+                  "uuid": "e410b767-8261-475e-b270-c7cd9e440dab",
+                  "parentUUID": "64b87952-c6e6-4b3b-acdd-529dc7a8bcfe",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2335,7 +2335,7 @@
                   "title": "should fail to delete as employee",
                   "fullTitle": "Project API DELETE /projects/:id should fail to delete as employee",
                   "timedOut": false,
-                  "duration": 9,
+                  "duration": 8,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2344,22 +2344,22 @@
                   "context": null,
                   "code": "// Create a new project first\nconst createRes = await request(app)\n  .post('/projects')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({\n    name: 'To Delete Project',\n    description: 'This project will be used for delete test'\n  });\nconst projectId = createRes.body.project.id;\nconst res = await request(app)\n  .delete(`/projects/${projectId}`)\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(403);",
                   "err": {},
-                  "uuid": "5e2e1a68-6b00-47ea-82a3-0ad191c37c29",
-                  "parentUUID": "17e33fc5-6602-4193-b0bb-7726cef10e6c",
+                  "uuid": "4ffa422a-c7c1-4c8d-8889-674646f0630e",
+                  "parentUUID": "64b87952-c6e6-4b3b-acdd-529dc7a8bcfe",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "8b0a363a-91e7-4ade-acc1-6d7211469821",
-                "675de4a2-7ceb-4088-aba7-32c96e924a27",
-                "5e2e1a68-6b00-47ea-82a3-0ad191c37c29"
+                "b0ce636e-a22f-4348-a618-bc38df0d3e19",
+                "e410b767-8261-475e-b270-c7cd9e440dab",
+                "4ffa422a-c7c1-4c8d-8889-674646f0630e"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 16,
+              "duration": 15,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
@@ -2375,7 +2375,7 @@
           "_timeout": 2000
         },
         {
-          "uuid": "d9f51313-bf90-4cfa-b07f-be23cd09cfd5",
+          "uuid": "85f28dc1-9059-463b-afdc-e1eb807a80b8",
           "title": "Smoke: API",
           "fullFile": "/app/tests/smoke.test.js",
           "file": "/tests/smoke.test.js",
@@ -2393,8 +2393,8 @@
               "context": null,
               "code": "await db.sequelize.query('DROP SCHEMA IF EXISTS public CASCADE;');\nawait db.sequelize.query('CREATE SCHEMA public;');\nawait db.sequelize.sync({ force: true });",
               "err": {},
-              "uuid": "f499a595-07c4-46fa-8605-66c3f2486ff6",
-              "parentUUID": "d9f51313-bf90-4cfa-b07f-be23cd09cfd5",
+              "uuid": "1a1d0652-670a-4168-b2c1-b18af3276afe",
+              "parentUUID": "85f28dc1-9059-463b-afdc-e1eb807a80b8",
               "isHook": true,
               "skipped": false
             }
@@ -2403,7 +2403,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "6ebb6c4f-ca5e-432b-b3a7-6946f841dabe",
+              "uuid": "a1d78930-2c82-4c1c-b5e3-b3663acc216d",
               "title": "Service availability",
               "fullFile": "/app/tests/smoke.test.js",
               "file": "/tests/smoke.test.js",
@@ -2414,7 +2414,7 @@
                   "title": "GET /health returns 200",
                   "fullTitle": "Smoke: API Service availability GET /health returns 200",
                   "timedOut": false,
-                  "duration": 1,
+                  "duration": 2,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2423,8 +2423,8 @@
                   "context": null,
                   "code": "const res = await request(app).get('/health');\nexpect(res.status).to.equal(200);",
                   "err": {},
-                  "uuid": "a3091415-14fe-4bae-93dd-aa910ca86e30",
-                  "parentUUID": "6ebb6c4f-ca5e-432b-b3a7-6946f841dabe",
+                  "uuid": "48031092-1388-4c0e-b7a0-479fd6ab1429",
+                  "parentUUID": "a1d78930-2c82-4c1c-b5e3-b3663acc216d",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2441,8 +2441,8 @@
                   "context": null,
                   "code": "const res = await request(app).get('/api-docs.json');\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('paths');",
                   "err": {},
-                  "uuid": "a4aa6bdf-038d-420c-99f7-ad95492c217d",
-                  "parentUUID": "6ebb6c4f-ca5e-432b-b3a7-6946f841dabe",
+                  "uuid": "c81d003c-48ff-41fe-be2d-8d48eded0943",
+                  "parentUUID": "a1d78930-2c82-4c1c-b5e3-b3663acc216d",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2459,28 +2459,28 @@
                   "context": null,
                   "code": "const res = await request(app).get('/api-docs/');\nexpect(res.status).to.equal(200);\nexpect(res.text).to.include('swagger');",
                   "err": {},
-                  "uuid": "64525568-4ee3-490a-903f-c7b0f69e8544",
-                  "parentUUID": "6ebb6c4f-ca5e-432b-b3a7-6946f841dabe",
+                  "uuid": "dae34268-73b5-4189-8380-b0ec3ea5e241",
+                  "parentUUID": "a1d78930-2c82-4c1c-b5e3-b3663acc216d",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "a3091415-14fe-4bae-93dd-aa910ca86e30",
-                "a4aa6bdf-038d-420c-99f7-ad95492c217d",
-                "64525568-4ee3-490a-903f-c7b0f69e8544"
+                "48031092-1388-4c0e-b7a0-479fd6ab1429",
+                "c81d003c-48ff-41fe-be2d-8d48eded0943",
+                "dae34268-73b5-4189-8380-b0ec3ea5e241"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 7,
+              "duration": 8,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "57af766f-0619-4676-b088-34768bdf313e",
+              "uuid": "110470ec-8815-4145-a00b-539fabd29127",
               "title": "Authentication",
               "fullFile": "/app/tests/smoke.test.js",
               "file": "/tests/smoke.test.js",
@@ -2500,32 +2500,14 @@
                   "context": null,
                   "code": "const res = await request(app).post('/register').send({\n  email: 'smoke.admin@example.com',\n  password: 'adminpassword',\n  firstName: 'Smoke',\n  lastName: 'Admin',\n  middleName: 'Middle',\n  birthDate: '1985-01-01',\n  phone: '+111111111',\n  programmingLanguage: 'N/A',\n  role: 'admin',\n  secretWord: process.env.SECRET_WORD\n});\nexpect(res.status).to.equal(201);",
                   "err": {},
-                  "uuid": "b0d9e8dd-a2dc-44cd-af90-010763fd09b1",
-                  "parentUUID": "57af766f-0619-4676-b088-34768bdf313e",
+                  "uuid": "049f20b5-3363-4a1d-8f6f-4b3fd7feab05",
+                  "parentUUID": "110470ec-8815-4145-a00b-539fabd29127",
                   "isHook": false,
                   "skipped": false
                 },
                 {
                   "title": "registers an employee",
                   "fullTitle": "Smoke: API Authentication registers an employee",
-                  "timedOut": false,
-                  "duration": 88,
-                  "state": "passed",
-                  "speed": "slow",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "context": null,
-                  "code": "const res = await request(app).post('/register').send({\n  email: 'smoke.employee@example.com',\n  password: 'password123',\n  firstName: 'Smoke',\n  lastName: 'Employee',\n  middleName: 'Middle',\n  birthDate: '1995-01-01',\n  phone: '+222222222',\n  programmingLanguage: 'JavaScript'\n});\nexpect(res.status).to.equal(201);\nexpect(res.body).to.have.property('userId');",
-                  "err": {},
-                  "uuid": "556058a9-6de0-4a2e-a717-9eb4080d93c5",
-                  "parentUUID": "57af766f-0619-4676-b088-34768bdf313e",
-                  "isHook": false,
-                  "skipped": false
-                },
-                {
-                  "title": "logs in as admin and returns token",
-                  "fullTitle": "Smoke: API Authentication logs in as admin and returns token",
                   "timedOut": false,
                   "duration": 87,
                   "state": "passed",
@@ -2534,10 +2516,28 @@
                   "fail": false,
                   "pending": false,
                   "context": null,
+                  "code": "const res = await request(app).post('/register').send({\n  email: 'smoke.employee@example.com',\n  password: 'password123',\n  firstName: 'Smoke',\n  lastName: 'Employee',\n  middleName: 'Middle',\n  birthDate: '1995-01-01',\n  phone: '+222222222',\n  programmingLanguage: 'JavaScript'\n});\nexpect(res.status).to.equal(201);\nexpect(res.body).to.have.property('userId');",
+                  "err": {},
+                  "uuid": "c23d71ec-ed1b-4292-bc18-f30402eaa8eb",
+                  "parentUUID": "110470ec-8815-4145-a00b-539fabd29127",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "logs in as admin and returns token",
+                  "fullTitle": "Smoke: API Authentication logs in as admin and returns token",
+                  "timedOut": false,
+                  "duration": 89,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
                   "code": "const res = await request(app)\n  .post('/login')\n  .send({ email: 'smoke.admin@example.com', password: 'adminpassword' });\nexpect(res.status).to.equal(200);\nexpect(res.body).to.have.property('token');\nadminToken = res.body.token;",
                   "err": {},
-                  "uuid": "da6d5399-aea2-457a-8d89-e6c16be8d584",
-                  "parentUUID": "57af766f-0619-4676-b088-34768bdf313e",
+                  "uuid": "8e7e7273-db26-46e9-aa51-3241c8a30611",
+                  "parentUUID": "110470ec-8815-4145-a00b-539fabd29127",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2545,7 +2545,7 @@
                   "title": "logs in as employee and returns token",
                   "fullTitle": "Smoke: API Authentication logs in as employee and returns token",
                   "timedOut": false,
-                  "duration": 86,
+                  "duration": 90,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -2554,8 +2554,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/login')\n  .send({ email: 'smoke.employee@example.com', password: 'password123' });\nexpect(res.status).to.equal(200);\nemployeeToken = res.body.token;",
                   "err": {},
-                  "uuid": "f82587e0-51c3-4051-ba78-1b3469135c1d",
-                  "parentUUID": "57af766f-0619-4676-b088-34768bdf313e",
+                  "uuid": "fec2929c-6a19-4f17-ab95-a62237bb7357",
+                  "parentUUID": "110470ec-8815-4145-a00b-539fabd29127",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2563,7 +2563,7 @@
                   "title": "rejects login with wrong password",
                   "fullTitle": "Smoke: API Authentication rejects login with wrong password",
                   "timedOut": false,
-                  "duration": 85,
+                  "duration": 86,
                   "state": "passed",
                   "speed": "slow",
                   "pass": true,
@@ -2572,30 +2572,30 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/login')\n  .send({ email: 'smoke.admin@example.com', password: 'wrong' });\nexpect(res.status).to.equal(400);",
                   "err": {},
-                  "uuid": "134602a1-21d0-435c-8e48-e7a7dd359db5",
-                  "parentUUID": "57af766f-0619-4676-b088-34768bdf313e",
+                  "uuid": "233bf0ae-2676-4797-87fa-25d5c2ebc1a1",
+                  "parentUUID": "110470ec-8815-4145-a00b-539fabd29127",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "b0d9e8dd-a2dc-44cd-af90-010763fd09b1",
-                "556058a9-6de0-4a2e-a717-9eb4080d93c5",
-                "da6d5399-aea2-457a-8d89-e6c16be8d584",
-                "f82587e0-51c3-4051-ba78-1b3469135c1d",
-                "134602a1-21d0-435c-8e48-e7a7dd359db5"
+                "049f20b5-3363-4a1d-8f6f-4b3fd7feab05",
+                "c23d71ec-ed1b-4292-bc18-f30402eaa8eb",
+                "8e7e7273-db26-46e9-aa51-3241c8a30611",
+                "fec2929c-6a19-4f17-ab95-a62237bb7357",
+                "233bf0ae-2676-4797-87fa-25d5c2ebc1a1"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 434,
+              "duration": 440,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "ef3f410e-3fb4-45f5-9d61-8f8909fb5ae0",
+              "uuid": "ec9278a3-7d70-4844-a338-19d199a696d2",
               "title": "Protected endpoints",
               "fullFile": "/app/tests/smoke.test.js",
               "file": "/tests/smoke.test.js",
@@ -2615,32 +2615,14 @@
                   "context": null,
                   "code": "const res = await request(app).get('/profile');\nexpect(res.status).to.equal(401);",
                   "err": {},
-                  "uuid": "d72c87fe-296d-42f0-b89b-286bef7cfc72",
-                  "parentUUID": "ef3f410e-3fb4-45f5-9d61-8f8909fb5ae0",
+                  "uuid": "77764e2c-da60-44f4-bd44-2d048ae08a11",
+                  "parentUUID": "ec9278a3-7d70-4844-a338-19d199a696d2",
                   "isHook": false,
                   "skipped": false
                 },
                 {
                   "title": "GET /profile with token returns current user",
                   "fullTitle": "Smoke: API Protected endpoints GET /profile with token returns current user",
-                  "timedOut": false,
-                  "duration": 4,
-                  "state": "passed",
-                  "speed": "fast",
-                  "pass": true,
-                  "fail": false,
-                  "pending": false,
-                  "context": null,
-                  "code": "const res = await request(app)\n  .get('/profile')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nexpect(JSON.stringify(res.body)).to.include('smoke.employee@example.com');",
-                  "err": {},
-                  "uuid": "ebfb889d-7368-46ba-aa3e-b53462d1ed26",
-                  "parentUUID": "ef3f410e-3fb4-45f5-9d61-8f8909fb5ae0",
-                  "isHook": false,
-                  "skipped": false
-                },
-                {
-                  "title": "GET /users returns list for admin",
-                  "fullTitle": "Smoke: API Protected endpoints GET /users returns list for admin",
                   "timedOut": false,
                   "duration": 5,
                   "state": "passed",
@@ -2649,10 +2631,28 @@
                   "fail": false,
                   "pending": false,
                   "context": null,
+                  "code": "const res = await request(app)\n  .get('/profile')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nexpect(JSON.stringify(res.body)).to.include('smoke.employee@example.com');",
+                  "err": {},
+                  "uuid": "17427b64-1bbc-48b8-ae02-f1c53dc4f746",
+                  "parentUUID": "ec9278a3-7d70-4844-a338-19d199a696d2",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "GET /users returns list for admin",
+                  "fullTitle": "Smoke: API Protected endpoints GET /users returns list for admin",
+                  "timedOut": false,
+                  "duration": 6,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
                   "code": "const res = await request(app)\n  .get('/users')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);",
                   "err": {},
-                  "uuid": "c6934446-0885-4320-a2b5-631e086e81aa",
-                  "parentUUID": "ef3f410e-3fb4-45f5-9d61-8f8909fb5ae0",
+                  "uuid": "ddfb36b6-1c94-4497-bb2b-3fae63340635",
+                  "parentUUID": "ec9278a3-7d70-4844-a338-19d199a696d2",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2669,29 +2669,29 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/notifications')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);",
                   "err": {},
-                  "uuid": "2807bc68-a74e-4738-8d49-1602154134e5",
-                  "parentUUID": "ef3f410e-3fb4-45f5-9d61-8f8909fb5ae0",
+                  "uuid": "66b4935c-c9e2-43df-bf95-528d6b482c67",
+                  "parentUUID": "ec9278a3-7d70-4844-a338-19d199a696d2",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "d72c87fe-296d-42f0-b89b-286bef7cfc72",
-                "ebfb889d-7368-46ba-aa3e-b53462d1ed26",
-                "c6934446-0885-4320-a2b5-631e086e81aa",
-                "2807bc68-a74e-4738-8d49-1602154134e5"
+                "77764e2c-da60-44f4-bd44-2d048ae08a11",
+                "17427b64-1bbc-48b8-ae02-f1c53dc4f746",
+                "ddfb36b6-1c94-4497-bb2b-3fae63340635",
+                "66b4935c-c9e2-43df-bf95-528d6b482c67"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 15,
+              "duration": 17,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "96b12d7c-37d4-4826-8ed3-f1f9867a1814",
+              "uuid": "3e6256ca-1cae-4096-adfb-625a34353d6b",
               "title": "Projects CRUD",
               "fullFile": "/app/tests/smoke.test.js",
               "file": "/tests/smoke.test.js",
@@ -2702,7 +2702,7 @@
                   "title": "admin creates a project",
                   "fullTitle": "Smoke: API Projects CRUD admin creates a project",
                   "timedOut": false,
-                  "duration": 5,
+                  "duration": 6,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2711,8 +2711,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .post('/projects')\n  .set('Authorization', `Bearer ${adminToken}`)\n  .send({ name: 'Smoke Project', description: 'Smoke test project', wage: 1000, active: true });\nexpect(res.status).to.equal(201);\nprojectId = res.body.project.id;",
                   "err": {},
-                  "uuid": "4d0ba7d8-91c9-4a2d-8f1b-fab24df5740a",
-                  "parentUUID": "96b12d7c-37d4-4826-8ed3-f1f9867a1814",
+                  "uuid": "4d6f6d7d-8386-4ab6-b000-4d373354068c",
+                  "parentUUID": "3e6256ca-1cae-4096-adfb-625a34353d6b",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2729,8 +2729,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get(`/projects/${projectId}`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(JSON.stringify(res.body)).to.include('Smoke Project');",
                   "err": {},
-                  "uuid": "a552b1e4-1c02-483d-bc4e-f4b2e42d4e84",
-                  "parentUUID": "96b12d7c-37d4-4826-8ed3-f1f9867a1814",
+                  "uuid": "f44624e0-ff24-4804-a307-2dddf5bee179",
+                  "parentUUID": "3e6256ca-1cae-4096-adfb-625a34353d6b",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2747,22 +2747,22 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .delete(`/projects/${projectId}`)\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.be.oneOf([200, 204]);",
                   "err": {},
-                  "uuid": "ab8349aa-eeb9-49b2-bc10-e5322f792e22",
-                  "parentUUID": "96b12d7c-37d4-4826-8ed3-f1f9867a1814",
+                  "uuid": "989e6569-a40d-4baa-bbd7-1e578b87430b",
+                  "parentUUID": "3e6256ca-1cae-4096-adfb-625a34353d6b",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "4d0ba7d8-91c9-4a2d-8f1b-fab24df5740a",
-                "a552b1e4-1c02-483d-bc4e-f4b2e42d4e84",
-                "ab8349aa-eeb9-49b2-bc10-e5322f792e22"
+                "4d6f6d7d-8386-4ab6-b000-4d373354068c",
+                "f44624e0-ff24-4804-a307-2dddf5bee179",
+                "989e6569-a40d-4baa-bbd7-1e578b87430b"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 13,
+              "duration": 14,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
@@ -2778,7 +2778,7 @@
           "_timeout": 2000
         },
         {
-          "uuid": "0e5acc27-243d-45fd-9107-993cbb8768d5",
+          "uuid": "26984469-182a-4e68-9467-849de49196dd",
           "title": "User API",
           "fullFile": "/app/tests/user.test.js",
           "file": "/tests/user.test.js",
@@ -2787,7 +2787,7 @@
               "title": "\"before all\" hook in \"User API\"",
               "fullTitle": "User API \"before all\" hook in \"User API\"",
               "timedOut": false,
-              "duration": 579,
+              "duration": 578,
               "state": null,
               "speed": null,
               "pass": false,
@@ -2796,8 +2796,8 @@
               "context": null,
               "code": "// Drop and recreate schema to ensure clean state\nawait db.sequelize.query('DROP SCHEMA IF EXISTS public CASCADE;');\nawait db.sequelize.query('CREATE SCHEMA public;');\nawait db.sequelize.sync({ force: true });\n// Создаем администратора и получаем токен\nawait request(app)\n  .post('/register')\n  .send({\n    email: 'admin@example.com',\n    password: 'adminpassword',\n    firstName: 'Admin',\n    lastName: 'User',\n    middleName: 'Middle',\n    birthDate: '1980-01-01',\n    phone: '+987654321',\n    programmingLanguage: 'N/A',\n    role: 'admin',\n    secretWord: process.env.SECRET_WORD\n  });\nconst adminRes = await request(app)\n  .post('/login')\n  .send({\n    email: 'admin@example.com',\n    password: 'adminpassword'\n  });\nadminToken = adminRes.body.token;\n// Создаем нескольких сотрудников\nconst usersData = [\n  {\n    email: 'employee1@example.com',\n    password: 'password123',\n    firstName: 'John',\n    lastName: 'Doe',\n    middleName: 'Middle',\n    birthDate: '1990-01-01',\n    phone: '+123456789',\n    programmingLanguage: 'JavaScript',\n    country: 'USA',\n    mentorName: 'Mentor A',\n    englishLevel: 'Intermediate',\n    registrationDate: '2021-01-01'\n  },\n  {\n    email: 'employee2@example.com',\n    password: 'password123',\n    firstName: 'Jane',\n    lastName: 'Smith',\n    middleName: 'Middle',\n    birthDate: '1992-02-02',\n    phone: '+987654321',\n    programmingLanguage: 'Python',\n    country: 'UK',\n    mentorName: 'Mentor B',\n    englishLevel: 'Advanced',\n    registrationDate: '2021-02-01'\n  },\n  {\n    email: 'employee3@example.com',\n    password: 'password123',\n    firstName: 'Alice',\n    lastName: 'Johnson',\n    middleName: 'Middle',\n    birthDate: '1995-03-03',\n    phone: '+111222333',\n    programmingLanguage: 'Java',\n    country: 'Canada',\n    mentorName: 'Mentor A',\n    englishLevel: 'Beginner',\n    registrationDate: '2021-03-01'\n  }\n  // Добавьте больше сотрудников для тестирования пагинации\n];\nfor (const userData of usersData) {\n  await request(app)\n    .post('/users')\n    .set('Authorization', `Bearer ${adminToken}`)\n    .send({\n      ...userData,\n      role: 'employee'\n    });\n}\n// Получаем токен для одного из сотрудников\nconst employeeRes = await request(app)\n  .post('/login')\n  .send({\n    email: 'employee1@example.com',\n    password: 'password123'\n  });\nemployeeToken = employeeRes.body.token;",
               "err": {},
-              "uuid": "ca546abc-1ffc-4638-89c0-ba3a7a918554",
-              "parentUUID": "0e5acc27-243d-45fd-9107-993cbb8768d5",
+              "uuid": "fe1e4f8d-e7de-40bf-bba2-231caa0fa04a",
+              "parentUUID": "26984469-182a-4e68-9467-849de49196dd",
               "isHook": true,
               "skipped": false
             }
@@ -2806,7 +2806,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "487b2512-1d0c-40cb-9ec4-5bc6dffa2adb",
+              "uuid": "383ef57c-0431-4b98-a672-710991c28cf0",
               "title": "GET /users",
               "fullFile": "/app/tests/user.test.js",
               "file": "/tests/user.test.js",
@@ -2826,8 +2826,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?page=1&limit=2')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.users).to.be.an('array').that.has.lengthOf(2);\nexpect(res.body).to.have.property('total');\nexpect(res.body).to.have.property('page', 1);\nexpect(res.body).to.have.property('totalPages');",
                   "err": {},
-                  "uuid": "3760a4b8-c39a-4687-9632-76e6f5d3842a",
-                  "parentUUID": "487b2512-1d0c-40cb-9ec4-5bc6dffa2adb",
+                  "uuid": "8b83230a-de77-4b6a-ae72-660bf7721346",
+                  "parentUUID": "383ef57c-0431-4b98-a672-710991c28cf0",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2835,7 +2835,7 @@
                   "title": "should search users by first name",
                   "fullTitle": "User API GET /users should search users by first name",
                   "timedOut": false,
-                  "duration": 6,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2844,8 +2844,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?firstName=Jane')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.users).to.be.an('array');\nexpect(res.body.users[0]).to.have.property('firstName', 'Jane');",
                   "err": {},
-                  "uuid": "6330df13-08cc-4e79-9087-967bfc120462",
-                  "parentUUID": "487b2512-1d0c-40cb-9ec4-5bc6dffa2adb",
+                  "uuid": "9fc26df4-a648-48bd-b682-0bf77887b9aa",
+                  "parentUUID": "383ef57c-0431-4b98-a672-710991c28cf0",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2853,7 +2853,7 @@
                   "title": "should search users by last name",
                   "fullTitle": "User API GET /users should search users by last name",
                   "timedOut": false,
-                  "duration": 6,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2862,8 +2862,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?lastName=Johnson')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.users).to.be.an('array');\nexpect(res.body.users[0]).to.have.property('lastName', 'Johnson');",
                   "err": {},
-                  "uuid": "958e8dfe-007f-4a34-84a3-058e3b5c496a",
-                  "parentUUID": "487b2512-1d0c-40cb-9ec4-5bc6dffa2adb",
+                  "uuid": "f68a444f-68a8-4342-a31f-1b5f1b7bb7c4",
+                  "parentUUID": "383ef57c-0431-4b98-a672-710991c28cf0",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2871,7 +2871,7 @@
                   "title": "should sort users by programmingLanguage in DESC order",
                   "fullTitle": "User API GET /users should sort users by programmingLanguage in DESC order",
                   "timedOut": false,
-                  "duration": 6,
+                  "duration": 5,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2880,8 +2880,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?sortBy=programmingLanguage&order=DESC')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.users).to.be.an('array');\nexpect(res.body.users[0]).to.have.property('programmingLanguage', 'Python');",
                   "err": {},
-                  "uuid": "5f4f4d44-9bec-4fab-a5ae-280c1d103ffc",
-                  "parentUUID": "487b2512-1d0c-40cb-9ec4-5bc6dffa2adb",
+                  "uuid": "2b174bce-a903-40c7-9a97-5d83172d5d47",
+                  "parentUUID": "383ef57c-0431-4b98-a672-710991c28cf0",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2889,7 +2889,7 @@
                   "title": "should return validation error for invalid query parameters",
                   "fullTitle": "User API GET /users should return validation error for invalid query parameters",
                   "timedOut": false,
-                  "duration": 4,
+                  "duration": 3,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -2898,8 +2898,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?page=-1&limit=0&sortBy=invalidField')\n  .set('Authorization', `Bearer ${employeeToken}`);\nexpect(res.status).to.equal(400);\nexpect(res.body).to.have.property('errors');\nexpect(res.body.errors).to.be.an('array');",
                   "err": {},
-                  "uuid": "53ce2606-f8ad-40c4-90dc-d519af89414f",
-                  "parentUUID": "487b2512-1d0c-40cb-9ec4-5bc6dffa2adb",
+                  "uuid": "923b04b4-bd89-4b5d-bcce-943b812b4776",
+                  "parentUUID": "383ef57c-0431-4b98-a672-710991c28cf0",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2916,8 +2916,8 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?sortBy=englishLevel&order=ASC')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.users).to.be.an('array');\nexpect(res.body.users[0]).to.have.property('englishLevel', 'Advanced');",
                   "err": {},
-                  "uuid": "90b519be-2a5b-4b02-a834-028e40928697",
-                  "parentUUID": "487b2512-1d0c-40cb-9ec4-5bc6dffa2adb",
+                  "uuid": "8e6e34d3-59f3-4795-92be-774efc5a5b20",
+                  "parentUUID": "383ef57c-0431-4b98-a672-710991c28cf0",
                   "isHook": false,
                   "skipped": false
                 },
@@ -2934,26 +2934,26 @@
                   "context": null,
                   "code": "const res = await request(app)\n  .get('/users?firstName=Alice&mentorName=Mentor A')\n  .set('Authorization', `Bearer ${adminToken}`);\nexpect(res.status).to.equal(200);\nexpect(res.body.users).to.be.an('array').that.has.lengthOf(1);\nexpect(res.body.users[0]).to.have.property('firstName', 'Alice');\nexpect(res.body.users[0]).to.have.property('mentorName', 'Mentor A');",
                   "err": {},
-                  "uuid": "f79a67f8-f485-4c1b-8daf-dbfbafaf6d92",
-                  "parentUUID": "487b2512-1d0c-40cb-9ec4-5bc6dffa2adb",
+                  "uuid": "981e0ed6-e917-4e78-9f6a-73efbf513274",
+                  "parentUUID": "383ef57c-0431-4b98-a672-710991c28cf0",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "3760a4b8-c39a-4687-9632-76e6f5d3842a",
-                "6330df13-08cc-4e79-9087-967bfc120462",
-                "958e8dfe-007f-4a34-84a3-058e3b5c496a",
-                "5f4f4d44-9bec-4fab-a5ae-280c1d103ffc",
-                "53ce2606-f8ad-40c4-90dc-d519af89414f",
-                "90b519be-2a5b-4b02-a834-028e40928697",
-                "f79a67f8-f485-4c1b-8daf-dbfbafaf6d92"
+                "8b83230a-de77-4b6a-ae72-660bf7721346",
+                "9fc26df4-a648-48bd-b682-0bf77887b9aa",
+                "f68a444f-68a8-4342-a31f-1b5f1b7bb7c4",
+                "2b174bce-a903-40c7-9a97-5d83172d5d47",
+                "923b04b4-bd89-4b5d-bcce-943b812b4776",
+                "8e6e34d3-59f3-4795-92be-774efc5a5b20",
+                "981e0ed6-e917-4e78-9f6a-73efbf513274"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 38,
+              "duration": 34,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
