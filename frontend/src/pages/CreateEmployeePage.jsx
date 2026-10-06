@@ -120,7 +120,7 @@ export default function CreateEmployeePage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Create New Employee</CardTitle>
+          <CardTitle className="text-2xl" data-testid="create-employee-title">Create New Employee</CardTitle>
           <CardDescription>Add a new employee to the system</CardDescription>
         </CardHeader>
         <CardContent>

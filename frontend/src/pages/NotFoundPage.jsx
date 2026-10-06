@@ -6,9 +6,9 @@ function NotFoundPage() {
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center px-4">
       <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-8 text-center">
         <div className="mb-6">
-          <h1 className="text-9xl font-bold text-blue-600">404</h1>
+          <h1 className="text-9xl font-bold text-blue-600" data-testid="not-found-code">404</h1>
         </div>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4" data-testid="not-found-message">
           Page Not Found
         </h2>
         <p className="text-gray-600 mb-8">

@@ -190,7 +190,7 @@ export default function ProjectsPage() {
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-3xl font-bold">Projects</h1>
+          <h1 className="text-3xl font-bold" data-testid="projects-heading">Projects</h1>
           <p className="text-muted-foreground mt-1">
             Manage company projects
           </p>
@@ -198,14 +198,14 @@ export default function ProjectsPage() {
         {isAdmin && (
           <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
             <DialogTrigger asChild>
-              <Button>
+              <Button data-testid="create-project-button">
                 <Plus className="mr-2 h-4 w-4" />
                 Create Project
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent data-testid="create-project-dialog">
               <DialogHeader>
-                <DialogTitle>Create New Project</DialogTitle>
+                <DialogTitle data-testid="create-project-dialog-title">Create New Project</DialogTitle>
                 <DialogDescription>
                   Add a new project to the system
                 </DialogDescription>
@@ -273,10 +273,11 @@ export default function ProjectsPage() {
                     type="button"
                     variant="outline"
                     onClick={() => setShowCreateDialog(false)}
+                    data-testid="create-project-cancel"
                   >
                     Cancel
                   </Button>
-                  <Button type="submit">Create</Button>
+                  <Button type="submit" data-testid="create-project-submit">Create</Button>
                 </DialogFooter>
               </form>
             </DialogContent>
@@ -308,7 +309,7 @@ export default function ProjectsPage() {
             <CardHeader>
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <CardTitle className="text-lg">{project.name}</CardTitle>
+                  <CardTitle className="text-lg" data-testid="project-name">{project.name}</CardTitle>
                   <div className="flex items-center gap-2 mt-2">
                     {project.active ? (
                       <span className="inline-flex items-center text-xs text-[#1a7f37] bg-[#dafbe1] px-2 py-0.5 rounded-full border border-[#1a7f37]/20">

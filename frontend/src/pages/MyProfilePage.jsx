@@ -110,14 +110,14 @@ export default function MyProfilePage() {
             <User className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">My Profile</h1>
+            <h1 className="text-3xl font-bold" data-testid="profile-heading">My Profile</h1>
             <p className="text-muted-foreground">
               View and edit your personal information
             </p>
           </div>
         </div>
         {!editing && (
-          <Button onClick={() => setEditing(true)}>Edit Profile</Button>
+          <Button onClick={() => setEditing(true)} data-testid="edit-profile-button">Edit Profile</Button>
         )}
       </div>
 
@@ -126,7 +126,7 @@ export default function MyProfilePage() {
           <CardTitle className="text-2xl">
             {profile.firstName} {profile.lastName}
           </CardTitle>
-          <CardDescription>
+          <CardDescription data-testid="profile-role">
             {profile.role === "admin" ? "Administrator" : "Employee"}
           </CardDescription>
         </CardHeader>
