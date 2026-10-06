@@ -36,3 +36,6 @@ swagger.json
 frontend/dist/
 frontend/build/
 
+
+# Test reports (mochawesome)
+reports/

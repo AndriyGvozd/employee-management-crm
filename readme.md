@@ -816,17 +816,32 @@ Workflow: `.github/workflows/test.yml` (name **Tests**). It combines the new API
 
 | Job | Runs | What it does |
 |---|---|---|
-| `api-tests` — API tests (Mocha) | always | `docker compose --profile ci run --rm --build test`; prints service logs on failure |
+| `api-tests` — API tests (Mocha) | always | `docker compose --profile ci run --rm --build test npm run test:report`; uploads the HTML report, prints service logs on failure |
 | `ui-tests` — UI tests (Playwright) | always, **in parallel** with `api-tests` | `docker compose --profile e2e run --rm --build playwright`; prints `app` / `frontend` logs and uploads screenshots + traces on failure |
 | `deploy-swagger` — Swagger docs to GitHub Pages | only on `main` (not for pull requests), **after both test jobs passed** | `npm ci` → `npm run build:swagger` → publish `./docs` with `peaceiris/actions-gh-pages` |
+| `publish-reports` — test reports to GitHub Pages | only on `main`, **always** (also when tests fail) | downloads API + UI reports, builds an index page, publishes to `gh-pages/reports` |
 
 ```
 api-tests ─┐
-           ├─► deploy-swagger (main only)
+           ├─► deploy-swagger (main only) ─► publish-reports (main only, always)
 ui-tests ──┘
 ```
 
+**Published test reports** (GitHub Pages, updated on every push to `main`):
+
+| Page | URL |
+|---|---|
+| Reports index (results, commit, link to the run) | https://andriygvozd.github.io/employee-management-crm/reports/ |
+| API report (mochawesome) | https://andriygvozd.github.io/employee-management-crm/reports/api/ |
+| UI report (Playwright) | https://andriygvozd.github.io/employee-management-crm/reports/ui/ |
+| API documentation (Redoc) | https://andriygvozd.github.io/employee-management-crm/docs/ |
+
+Requires **Settings → Pages → Deploy from a branch → `gh-pages` / `(root)`**.
+
+Locally the API HTML report is generated with `docker compose --profile ci run --rm test npm run test:report` → `reports/api/index.html`.
+
 **Artifacts** (Actions → run → *Artifacts*, kept 14 days):
+- `api-report` — API HTML report (mochawesome), uploaded on every run.
 - `playwright-report` — HTML report, uploaded on every run. Download, unzip and open with `npx playwright show-report <folder>`.
 - `playwright-test-results` — screenshots and `trace.zip` of failed tests (only when tests fail). Open a trace at https://trace.playwright.dev.
 
