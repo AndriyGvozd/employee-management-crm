@@ -864,6 +864,7 @@ No secrets or `.env` files are needed: services read the committed `*.example` e
 | `.env.example` | `CORS_ORIGIN=+` → `CORS_ORIGIN=*` | `+` blocked all browser requests (CORS), login through UI was impossible |
 | `entrypoint-test.sh` | Drops the test DB before creating it | Second test run failed on migrations (`column "currentProject" does not exist`) because the test DB from the previous run remained |
 | `package.json` | Added `test:smoke` script | Run only API smoke tests |
+| `package.json` | Added `nodemonConfig.ignore` (`e2e/`, `frontend/`, `tests/`, `reports/`, `docs/`, `*.md`) | `nodemon` watched the whole bind-mounted project and restarted the API whenever test reports/results (`.json`) were written, breaking running UI tests |
 | `tests/smoke.test.js` | New file | API smoke suite |
 | `e2e/` | New folder | Playwright UI tests |
 
@@ -875,6 +876,7 @@ No secrets or `.env` files are needed: services read the committed `*.example` e
 4. **Test DB not cleaned between runs** — repeated `npm run test` in Docker failed on migrations. Fixed in `entrypoint-test.sh`.
 5. **Race condition on Employees page (not fixed in app)** — if the search request finishes before the initial list request, the initial (full) list overwrites search results. In dev mode React StrictMode fires the initial request twice, which makes it more likely. The UI test waits for network idle and for the search response (`EmployeesPage.ts`), but the frontend should cancel/ignore outdated requests.
 6. **Login from the host browser was impossible** — consequence of bug 2. Fixed together with it.
+7. **API restarted during UI tests** — `nodemon` (dev mode) watched the whole project folder, so writing `.json` test results into `e2e/` or `reports/` restarted the API mid-run (`net::ERR_EMPTY_RESPONSE` in tests). Fixed with `nodemonConfig.ignore`; verified: 3 restarts → 0, editing backend code still restarts.
 
 ### Test Results
 
@@ -886,6 +888,17 @@ No secrets or `.env` files are needed: services read the committed `*.example` e
 | UI (Playwright) | `docker compose --profile e2e run --rm playwright` | **18 passed** |
 | UI smoke (`@smoke`) | `docker compose --profile e2e run --rm playwright sh -c "npm ci && npx playwright test --grep @smoke"` | **9 passed** |
 | Clean up | `docker-compose down -v` | no containers, volumes or networks left |
+
+
+### Test Results Online
+
+Latest results from the `main` branch (updated by GitHub Actions on every push):
+
+- 📊 **Test reports (summary):** https://andriygvozd.github.io/employee-management-crm/reports/
+- 🔌 **API tests report (Mocha / mochawesome):** https://andriygvozd.github.io/employee-management-crm/reports/api/
+- 🖥️ **UI tests report (Playwright):** https://andriygvozd.github.io/employee-management-crm/reports/ui/
+- 📘 **API documentation (Redoc):** https://andriygvozd.github.io/employee-management-crm/docs/
+- ⚙️ **GitHub Actions runs:** https://github.com/AndriyGvozd/employee-management-crm/actions/workflows/test.yml
 
 ---
 

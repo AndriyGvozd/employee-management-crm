@@ -58,5 +58,15 @@
     "sequelize-cli": "^6.6.2",
     "sinon": "^15.2.0",
     "supertest": "^6.3.3"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "e2e/*",
+      "frontend/*",
+      "tests/*",
+      "reports/*",
+      "docs/*",
+      "*.md"
+    ]
   }
 }
