@@ -89,7 +89,7 @@ export default function RegisterPage() {
               <Users className="h-8 w-8 text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl">
+          <CardTitle className="text-2xl" data-testid="register-title">
             Create your account
           </CardTitle>
           <CardDescription>
@@ -216,7 +216,7 @@ export default function RegisterPage() {
             )}
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button type="submit" className="w-full" disabled={loading} data-testid="register-submit">
               {loading ? "Creating account..." : "Create account"}
             </Button>
             <p className="text-sm text-center text-[#57606a]">

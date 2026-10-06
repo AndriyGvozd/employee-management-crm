@@ -43,7 +43,7 @@ export default function Layout() {
               {/* Desktop Navigation - GitHub style tabs */}
               <nav className="hidden md:flex items-center space-x-2 ml-6">
                 {navItems.map((item) => (
-                  <Link key={item.path} to={item.path} className="relative">
+                  <Link key={item.path} to={item.path} className="relative" data-testid={`nav-${item.path.slice(1)}`}>
                     <button
                       className={`flex items-center px-4 py-2 text-sm font-medium transition-colors ${
                         isActive(item.path)
@@ -69,6 +69,7 @@ export default function Layout() {
                 <p className="text-gray-300 text-xs">{user?.role}</p>
               </div>
               <button 
+                data-testid="logout-button"
                 onClick={handleLogout}
                 className="px-3 py-1.5 text-sm font-medium text-white border border-gray-500 rounded-md hover:bg-gray-700 transition-colors"
               >

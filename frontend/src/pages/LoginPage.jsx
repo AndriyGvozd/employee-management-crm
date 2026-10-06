@@ -46,7 +46,7 @@ export default function LoginPage() {
               <Users className="h-8 w-8 text-white" />
             </div>
           </div>
-          <CardTitle className="text-2xl">Sign in to Employee Management</CardTitle>
+          <CardTitle className="text-2xl" data-testid="login-title">Sign in to Employee Management</CardTitle>
           <CardDescription>
             Enter your credentials to access your account
           </CardDescription>
@@ -79,12 +79,12 @@ export default function LoginPage() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button type="submit" className="w-full" disabled={loading} data-testid="login-submit">
               {loading ? 'Signing in...' : 'Sign in'}
             </Button>
             <p className="text-sm text-center text-[#57606a]">
               New to Employee Management?{' '}
-              <Link to="/register" className="text-[#0969da] hover:underline font-medium">
+              <Link to="/register" data-testid="register-link" className="text-[#0969da] hover:underline font-medium">
                 Create an account
               </Link>
             </p>

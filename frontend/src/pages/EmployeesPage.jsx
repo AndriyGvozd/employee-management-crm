@@ -104,11 +104,11 @@ export default function EmployeesPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Employees</h1>
+          <h1 className="text-3xl font-bold" data-testid="employees-heading">Employees</h1>
           <p className="text-muted-foreground">Manage your team members</p>
         </div>
         {isAdmin && (
-          <Button onClick={() => navigate("/employees/new")}>
+          <Button onClick={() => navigate("/employees/new")} data-testid="add-employee-button">
             <Plus className="mr-2 h-4 w-4" />
             Add Employee
           </Button>
@@ -120,6 +120,7 @@ export default function EmployeesPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search by name..."
+            data-testid="employees-search"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -168,7 +169,7 @@ export default function EmployeesPage() {
       ) : employees.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <p className="text-muted-foreground">No employees found</p>
+            <p className="text-muted-foreground" data-testid="employees-empty">No employees found</p>
           </CardContent>
         </Card>
       ) : (
