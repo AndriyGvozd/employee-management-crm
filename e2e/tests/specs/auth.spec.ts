@@ -15,19 +15,36 @@ test.describe('Auth @smoke', () => {
     await expect(page).toHaveURL(/\/login/);
   });
 
-  test('login with wrong password stays on login page', async ({ page, loginPage }) => {
+  test('login with wrong password stays on login page without token', async ({ page, loginPage }) => {
     await loginPage.login(ADMIN.email, 'wrong-password');
     await expect(page).toHaveURL(/\/login/);
+    expect(await loginPage.authToken()).toBeNull();
   });
 
-  test('admin can log in', async ({ page, loginPage }) => {
+  test('login with wrong password shows error toast', async ({ loginPage }) => {
+    // Known app bug (https://github.com/AndriyGvozd/employee-management-crm/issues/5): <Toaster /> is rendered only in Layout (pages after login),
+    // so /login and /register never show error toasts.
+    // Remove test.fail() when the bug is fixed - the test will then pass normally.
+    test.fail(true, 'Known bug: error toasts are not shown on /login (Toaster is only in Layout.jsx)');
+    await loginPage.login(ADMIN.email, 'wrong-password');
+    await expect(loginPage.toast).toHaveAttribute('data-variant', 'destructive', { timeout: 3000 });
+    await expect(loginPage.toastTitle).toHaveText('Error');
+  });
+
+  test('admin can log in', async ({ page, loginPage, employeesPage }) => {
     await loginPage.login(ADMIN.email, ADMIN.password);
-    await expect(page).not.toHaveURL(/\/login/);
+    await expect(loginPage.toastTitle).toHaveText('Success');
+    await expect(loginPage.toastDescription).toHaveText('Logged in successfully!');
+    // "/" redirects to the employees list
+    await expect(page).toHaveURL(/\/employees$/);
+    await expect(employeesPage.heading).toBeVisible();
+    expect(await loginPage.authToken()).toBeTruthy();
   });
 
   test('admin can log out', async ({ page, asAdmin, employeesPage }) => {
     await employeesPage.logout();
     await expect(page).toHaveURL(/\/login/);
+    expect(await employeesPage.authToken()).toBeNull();
   });
 });
 
@@ -51,6 +68,8 @@ test.describe('Registration', () => {
       programmingLanguage: 'JavaScript',
     };
     await registerPage.register(user);
+    await expect(registerPage.toastTitle).toHaveText('Success');
+    await expect(registerPage.toastDescription).toHaveText('Account created successfully!');
     await expect(page).not.toHaveURL(/\/register/);
 
     await loginPage.login(user.email, user.password);

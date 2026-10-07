@@ -79,7 +79,7 @@ services:
 
   # Playwright E2E (UI) tests. Tests live in ./e2e
   playwright:
-    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    build: ./e2e
     container_name: my_playwright
     working_dir: /e2e
     env_file:
@@ -97,11 +97,12 @@ services:
       frontend:
         condition: service_started
     volumes:
+      # live test code from the host; node_modules come from the image
       - ./e2e:/e2e
       - /e2e/node_modules
     # proxy always starts first, so any overridden command (UI mode, --grep, ...) works too
     entrypoint: ["sh", "-c", "node localhost-proxy.js & exec \"$$@\"", "--"]
-    command: sh -c "npm ci && npx playwright test"
+    command: npx playwright test
     profiles:
       - e2e
 

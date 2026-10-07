@@ -583,8 +583,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 | Area | Before | After |
 |---|---|---|
-| API tests (Mocha) | 86 tests, run in Docker | **101 tests** (86 existing + 15 new smoke), all passing |
-| UI tests (Playwright) | Not present (only a stub service that exited with error) | **18 tests**, Page Object Model, TypeScript, run in Docker |
+| API tests (Mocha) | 86 tests, run in Docker | **102 tests** (86 existing + 16 new smoke), all passing |
+| UI tests (Playwright) | Not present (only a stub service that exited with error) | **19 tests** (1 marked as known app bug), Page Object Model, TypeScript, run in Docker |
 | Repeated test runs | Failed on second run (stale test DB) | Can be run any number of times in a row |
 
 ### Quick Start
@@ -620,12 +620,13 @@ docker compose --profile ci run --rm test npm run test:smoke
 docker compose --profile e2e run --rm playwright
 
 # Only UI smoke tests (tagged @smoke)
-docker compose --profile e2e run --rm playwright sh -c "npm ci && npx playwright test --grep @smoke"
+docker compose --profile e2e run --rm playwright npx playwright test --grep @smoke
 ```
 
 Then clean up with `docker-compose down -v`.
 
 > **Notes**
+> - UI test dependencies are baked into the `playwright` image (`e2e/Dockerfile`); test code is mounted live, so edits need no rebuild. After changing `e2e/package.json` / `package-lock.json` add `--build`.
 > - `run --rm` removes the test container after the run, so `docker-compose down -v` cleans up everything. The exit code of `run` is the test result (`0` = all passed).
 > - Alternatively, tests can run with `up`: `docker compose --profile e2e up --build --abort-on-container-exit --exit-code-from playwright`. In that case the stopped `my_playwright` container belongs to the `e2e` profile, so clean up with `docker compose --profile "*" down -v`.
 > - After a run, messages like `my_app ... npm error signal SIGTERM` or `exited with code 143` are **normal** — Docker stops the other containers.
@@ -666,14 +667,14 @@ Supertest imports the Express `app` directly, so API tests need only the `db` co
 
 **Existing tests** (`tests/`): `auth`, `user`, `project`, `notification`, `notificationService`, `bugfixes`, `edge-cases` — 86 tests, all passing.
 
-#### New: API smoke suite — `tests/smoke.test.js` (15 tests)
+#### New: API smoke suite — `tests/smoke.test.js` (16 tests)
 
 | Group | Tests |
 |---|---|
-| Service availability | `GET /health` returns 200 · `GET /api-docs.json` returns OpenAPI spec · `GET /api-docs` serves Swagger UI |
-| Authentication | register admin (with secret word) · register employee · login admin returns token · login employee returns token · wrong password returns 400 |
+| Service availability | `GET /health` returns 200 · `GET /api-docs.json` returns OpenAPI spec with `/login`, `/register`, `/users`, `/projects` · `GET /api-docs` serves Swagger UI (HTML, title) |
+| Authentication | register admin (with secret word) · register employee · login admin returns token · login employee returns token · wrong password returns 400 with error and no token |
 | Protected endpoints | `GET /profile` without token → 401 · `GET /profile` with token → current user · `GET /users` as admin → 200 · `GET /notifications` → 200 |
-| Projects CRUD | admin creates project → reads it → deletes it |
+| Projects CRUD | admin creates project → reads it → deletes it → deleted project returns 404 |
 
 New npm script in root `package.json`:
 ```json
@@ -711,6 +712,7 @@ e2e/
 │       ├── projects.spec.ts
 │       └── profile.spec.ts
 ├── localhost-proxy.js        # inside Docker: localhost:5173/3000 → frontend/app services
+├── Dockerfile                # Playwright image + dependencies in a cached layer
 ├── playwright.config.ts      # baseURL from BASE_URL env, screenshots + trace on failure
 ├── tsconfig.json             # strict mode
 ├── package.json              # scripts: test:e2e, test:e2e:smoke, typecheck
@@ -725,12 +727,12 @@ e2e/
 - Navigation sections are typed: `NavSection = 'employees' | 'projects' | 'notifications' | 'profile'` (maps to `data-testid="nav-<section>"`).
 - Fixtures (`fixtures/index.ts`) inject page objects into tests, e.g. `test('...', async ({ loginPage, projectsPage }) => {...})`. The `asAdmin` fixture logs in as the default admin (`admin@example.com`, created automatically by `app.js`).
 
-#### Test list (18 tests)
+#### Test list (19 tests)
 
 | Spec | Tests |
 |---|---|
-| `auth.spec.ts` `@smoke` | login page is displayed · unauthenticated user redirected to `/login` · wrong password stays on login page · admin can log in · admin can log out |
-| `auth.spec.ts` (Registration) | register page opens from login link · new employee registers, logs in and does **not** see admin-only Notifications |
+| `auth.spec.ts` `@smoke` | login page is displayed · unauthenticated user redirected to `/login` · wrong password stays on login page without token · wrong password shows error toast (`test.fail()`, known bug 8) · admin can log in (success toast, redirect to `/employees`, token saved) · admin can log out (token removed) |
+| `auth.spec.ts` (Registration) | register page opens from login link · new employee registers (success toast), logs in and does **not** see admin-only Notifications |
 | `navigation.spec.ts` `@smoke` | open Employees · open Projects · open Notifications · unknown route shows 404 page |
 | `employees.spec.ts` | admin sees "Add Employee" · "Add Employee" opens create form · search by unknown name shows "No employees found" |
 | `projects.spec.ts` | create-project dialog opens and closes · admin creates a project and it appears in the list |
@@ -752,7 +754,7 @@ UI Mode shows the test tree, a timeline with screenshots, every action (`goto`, 
 
 ```bash
 # Start the e2e stand + UI Mode server on port 8080
-docker compose --profile e2e run --rm -p 8080:8080 playwright sh -c "npm ci && npx playwright test --ui-port=8080 --ui-host=0.0.0.0"
+docker compose --profile e2e run --rm -p 8080:8080 playwright npx playwright test --ui-port=8080 --ui-host=0.0.0.0
 ```
 
 Then open **http://localhost:8080** in Chrome / Safari / Firefox:
@@ -802,7 +804,7 @@ npx playwright show-report
 
 To record a trace for **every** test (not only failed ones), run:
 ```bash
-docker compose --profile e2e run --rm playwright sh -c "npm ci && npx playwright test --trace on"
+docker compose --profile e2e run --rm playwright npx playwright test --trace on
 ```
 and open any test in the report → **Trace** tab.
 
@@ -853,7 +855,7 @@ No secrets or `.env` files are needed: services read the committed `*.example` e
 
 | File | Change | Why |
 |---|---|---|
-| `docker-compose.yml` | `playwright` service: stub (`exit 1`) replaced with a real service on the Playwright image, mounting `./e2e`, running `npm ci && npx playwright test`, `BASE_URL=http://frontend:5173` | Run UI tests in Docker |
+| `docker-compose.yml`, `e2e/Dockerfile` | `playwright` service: stub (`exit 1`) replaced with a real service built from `e2e/Dockerfile` (Playwright image + `npm ci` in a cached layer), mounting `./e2e` for live test code, running `npx playwright test` | Run UI tests in Docker; dependencies are installed once per `package-lock.json` change instead of on every run |
 | `docker-compose.yml` | Removed profiles from `db`, `app`, `frontend` | `docker-compose up --build` from the task started nothing (`no service selected`), and `docker-compose down -v` did not see any service |
 | `docker-compose.yml` | `env_file` = committed `*.example` + optional local file (`required: false`) | Project starts on a clean machine without copying `.env` files |
 | `docker-compose.yml` | `playwright` entrypoint starts `e2e/localhost-proxy.js`; `BASE_URL=http://localhost:5173` | The browser inside Docker uses the same URLs as the host browser |
@@ -874,19 +876,20 @@ No secrets or `.env` files are needed: services read the committed `*.example` e
 2. **API URL `http://app:3000` in the browser** — not resolvable from the host, and inside Docker `.app` is an HSTS-preloaded TLD, so Chrome forces HTTPS (*"Redirect is not allowed for a preflight request"*). Fixed: `VITE_API_URL=http://localhost:3000` + `localhost-proxy.js` for the Playwright container.
 3. **Commands from the task did not work** — all services were bound to profiles, so `docker-compose up --build` printed `no service selected`, and `.env` files had to be created manually. Fixed: base services without profiles, env files optional.
 4. **Test DB not cleaned between runs** — repeated `npm run test` in Docker failed on migrations. Fixed in `entrypoint-test.sh`.
-5. **Race condition on Employees page (not fixed in app)** — if the search request finishes before the initial list request, the initial (full) list overwrites search results. In dev mode React StrictMode fires the initial request twice, which makes it more likely. The UI test waits for network idle and for the search response (`EmployeesPage.ts`), but the frontend should cancel/ignore outdated requests.
+5. **Race condition on Employees page (not fixed in app, [issue #4](https://github.com/AndriyGvozd/employee-management-crm/issues/4))** — if the search request finishes before the initial list request, the initial (full) list overwrites search results. In dev mode React StrictMode fires the initial request twice, which makes it more likely. The UI test waits for network idle and for the search response (`EmployeesPage.ts`), but the frontend should cancel/ignore outdated requests.
 6. **Login from the host browser was impossible** — consequence of bug 2. Fixed together with it.
 7. **API restarted during UI tests** — `nodemon` (dev mode) watched the whole project folder, so writing `.json` test results into `e2e/` or `reports/` restarted the API mid-run (`net::ERR_EMPTY_RESPONSE` in tests). Fixed with `nodemonConfig.ignore`; verified: 3 restarts → 0, editing backend code still restarts.
+8. **Error toasts are not shown on `/login` and `/register` (not fixed in app, [issue #5](https://github.com/AndriyGvozd/employee-management-crm/issues/5))** — `<Toaster />` is rendered only in `frontend/src/components/Layout.jsx` (pages after login). A wrong password or a registration error gives the user no feedback at all; the API correctly returns `400`. Found by the strengthened UI assertions. Covered by `auth.spec.ts` › *wrong password shows error toast*, marked with `test.fail()`: it passes while the bug exists and will fail once it is fixed (then remove `test.fail()`). Fix: render `<Toaster />` in `App.jsx` instead of `Layout.jsx`.
 
 ### Test Results
 
 | Suite | Command | Result |
 |---|---|---|
 | Start app | `docker-compose up --build` | `db`, `app` healthy; `/health`, `/api-docs`, frontend → 200 |
-| API (all) | `docker compose --profile ci run --rm --build test` | **101 passing** |
-| API smoke | `docker compose --profile ci run --rm test npm run test:smoke` | **15 passing** |
-| UI (Playwright) | `docker compose --profile e2e run --rm playwright` | **18 passed** |
-| UI smoke (`@smoke`) | `docker compose --profile e2e run --rm playwright sh -c "npm ci && npx playwright test --grep @smoke"` | **9 passed** |
+| API (all) | `docker compose --profile ci run --rm --build test` | **102 passing** |
+| API smoke | `docker compose --profile ci run --rm test npm run test:smoke` | **16 passing** |
+| UI (Playwright) | `docker compose --profile e2e run --rm playwright` | **19 passed** (incl. 1 expected failure, see bug 8) |
+| UI smoke (`@smoke`) | `docker compose --profile e2e run --rm playwright npx playwright test --grep @smoke` | **10 passed** |
 | Clean up | `docker-compose down -v` | no containers, volumes or networks left |
 
 
