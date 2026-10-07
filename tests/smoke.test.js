@@ -25,13 +25,15 @@ describe('Smoke: API', () => {
     it('GET /api-docs.json returns OpenAPI spec', async () => {
       const res = await request(app).get('/api-docs.json');
       expect(res.status).to.equal(200);
-      expect(res.body).to.have.property('paths');
+      expect(res.body).to.have.property('openapi');
+      expect(res.body.paths).to.include.all.keys('/login', '/register', '/users', '/projects');
     });
 
     it('GET /api-docs serves Swagger UI', async () => {
       const res = await request(app).get('/api-docs/');
       expect(res.status).to.equal(200);
-      expect(res.text).to.include('swagger');
+      expect(res.headers['content-type']).to.include('text/html');
+      expect(res.text).to.include('<title>Swagger UI</title>');
     });
   });
 
@@ -89,6 +91,8 @@ describe('Smoke: API', () => {
         .post('/login')
         .send({ email: 'smoke.admin@example.com', password: 'wrong' });
       expect(res.status).to.equal(400);
+      expect(res.body).to.have.property('error');
+      expect(res.body).to.not.have.property('token');
     });
   });
 
@@ -144,6 +148,14 @@ describe('Smoke: API', () => {
         .delete(`/projects/${projectId}`)
         .set('Authorization', `Bearer ${adminToken}`);
       expect(res.status).to.be.oneOf([200, 204]);
+    });
+
+    it('deleted project is no longer available', async () => {
+      const res = await request(app)
+        .get(`/projects/${projectId}`)
+        .set('Authorization', `Bearer ${adminToken}`);
+      expect(res.status).to.equal(404);
+      expect(res.body).to.have.property('error', 'Project not found');
     });
   });
 });

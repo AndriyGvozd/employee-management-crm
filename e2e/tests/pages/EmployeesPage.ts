@@ -16,6 +16,7 @@ export class EmployeesPage extends BasePage {
   }
 
   // Wait for the employees list request, so later actions don't race with it
+  // (app race condition: https://github.com/AndriyGvozd/employee-management-crm/issues/4)
   waitForUsersResponse(predicate: (url: string) => boolean = () => true): Promise<Response> {
     return this.page.waitForResponse(
       (res) => res.url().includes('/users') && res.request().method() === 'GET' && predicate(res.url())
